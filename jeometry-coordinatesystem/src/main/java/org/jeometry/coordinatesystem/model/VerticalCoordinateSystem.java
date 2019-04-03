@@ -126,6 +126,11 @@ public class VerticalCoordinateSystem extends AbstractCoordinateSystem {
   }
 
   @Override
+  public int getHorizontalCoordinateSystemId() {
+    return 0;
+  }
+
+  @Override
   public Unit<Length> getLengthUnit() {
     return this.linearUnit.getUnit();
   }

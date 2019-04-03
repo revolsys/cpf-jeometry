@@ -111,6 +111,15 @@ public class CompoundCoordinateSystem extends AbstractCoordinateSystem {
   }
 
   @Override
+  public int getHorizontalCoordinateSystemId() {
+    if (this.horizontalCoordinateSystem == null) {
+      return 0;
+    } else {
+      return this.horizontalCoordinateSystem.getHorizontalCoordinateSystemId();
+    }
+  }
+
+  @Override
   public Unit<Length> getLengthUnit() {
     return this.horizontalCoordinateSystem.getLengthUnit();
   }

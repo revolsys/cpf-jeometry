@@ -18,7 +18,7 @@ import org.jeometry.coordinatesystem.model.unit.LinearUnit;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperation;
 import org.jeometry.coordinatesystem.util.Md5;
 
-public interface CoordinateSystem extends CoordinateSystemProxy {
+public interface CoordinateSystem extends CoordinateSystemProxy, HorizontalCoordinateSystemProxy {
   public static <C extends CoordinateSystem> C getCoordinateSystem(final String wkt) {
     return EsriCoordinateSystems.readCoordinateSystem(wkt);
   }
@@ -58,9 +58,13 @@ public interface CoordinateSystem extends CoordinateSystemProxy {
     return getCoordinateSystemName();
   }
 
+  @Override
   default <C extends CoordinateSystem> C getHorizontalCoordinateSystem() {
     return null;
   }
+
+  @Override
+  int getHorizontalCoordinateSystemId();
 
   default Integer getInteger(final int index) {
     if (index == 0) {
