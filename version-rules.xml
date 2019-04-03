@@ -12,11 +12,6 @@
     <ignoreVersion type="regex">.*-MTEC.*</ignoreVersion>
   </ignoreVersions>
   <rules>
-    <rule groupId="com.revolsys.open" comparisonMethod="maven">
-      <ignoreVersions>
-        <ignoreVersion type="regex">.*</ignoreVersion>
-      </ignoreVersions>
-    </rule>
     <rule groupId="org.postgresql" comparisonMethod="maven">
       <ignoreVersions>
         <ignoreVersion type="regex">.*.jre.*</ignoreVersion>

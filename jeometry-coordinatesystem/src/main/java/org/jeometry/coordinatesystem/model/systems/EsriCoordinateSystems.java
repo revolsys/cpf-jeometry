@@ -305,6 +305,10 @@ public class EsriCoordinateSystems {
    * Parse the coordinate system from the WKT. If it is a standard one then
    *  {@link EpsgCoordinateSystems#getCoordinateSystem(int)} will be used to return that
    *  coordinate system.
+   *
+   *  @param wkt The WKT coordinate system definition
+   *  @param <C> The type of coordinate system to cast the result to.
+   *  @return The coordinate system or null if not found.
    */
   @SuppressWarnings("unchecked")
   public static <C extends CoordinateSystem> C readCoordinateSystem(final String wkt) {

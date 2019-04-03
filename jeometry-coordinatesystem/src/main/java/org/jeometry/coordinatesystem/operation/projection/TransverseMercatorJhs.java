@@ -87,6 +87,7 @@ public class TransverseMercatorJhs extends TransverseMercator {
 
   /**
    * Project the projected coordinates in metres to lon/lat cordinates in degrees.
+   * @param point The coordinates to convert.
    */
   @Override
   public void inverse(final CoordinatesOperationPoint point) {
@@ -144,8 +145,7 @@ public class TransverseMercatorJhs extends TransverseMercator {
 
   /**
    * Project the lon/lat ordinates in degrees to projected coordinates in metres.
-   * @param from The ordinates to convert.
-   * @param to The ordinates to write the converted ordinates to.
+   * @param point The coordinates to convert.
    */
   @Override
   public void project(final CoordinatesOperationPoint point) {

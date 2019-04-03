@@ -124,8 +124,7 @@ public class TransverseMercatorUsgs extends TransverseMercator {
    * ePrime &circ; 2 = e &circ; 2 / (1 - e &circ; 2)
    * D = (x - xo) / (ν1 * kO)
    * </pre>
-   * @param from The ordinates to convert.
-   * @param to The ordinates to write the converted ordinates to.
+   * @param point The coordinates to convert.
    */
   @Override
   public void inverse(final CoordinatesOperationPoint point) {
@@ -209,8 +208,7 @@ public class TransverseMercatorUsgs extends TransverseMercator {
    * A = (λ - λO) * cosϕ
    * ν = a / (1 - e &circ; 2 * sinϕ &circ; 2) &circ; 0.5
    * </pre>
-   * @param from The ordinates to convert.
-   * @param to The ordinates to write the converted ordinates to.
+   * @param point The coordinates to convert.
    */
   @Override
   public void project(final CoordinatesOperationPoint point) {

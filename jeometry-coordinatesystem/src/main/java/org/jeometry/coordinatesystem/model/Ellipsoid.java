@@ -235,15 +235,7 @@ public class Ellipsoid implements Serializable {
     point.z = h;
   }
 
-  /**
-   * https://www.movable-type.co.uk/scripts/latlong-vincenty.html
-   * @author Paul Austin <paul.austin@revolsys.com>
-   * @param λ1
-   * @param φ1
-   * @param lon2
-   * @param lat2
-   * @return
-   */
+  // https://www.movable-type.co.uk/scripts/latlong-vincenty.html
   public double distanceMetres(final double lon1, final double lat1, final double lon2,
     final double lat2) {
     final double λ1 = Math.toRadians(lon1);
@@ -545,9 +537,7 @@ public class Ellipsoid implements Serializable {
     return getRadiusFromRadians(φ);
   }
 
-  /**
-   * R(φ)=sqrt(((a² cos(φ))²+(b² sin(φ))²)/((a cos(φ))²+(b sin(φ))²))
-   */
+  // R(φ)=sqrt(((a² cos(φ))²+(b² sin(φ))²)/((a cos(φ))²+(b sin(φ))²))
   public double getRadiusFromRadians(final double lat) {
     final double cosLat = Math.cos(lat);
     final double sinLat = Math.sin(lat);
