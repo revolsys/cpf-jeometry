@@ -84,8 +84,7 @@ public class EsriCoordinateSystems {
         return Collections.emptyList();
       } else {
         try (
-          DataInputStream reader = newDataInputStream(
-            "classpath:CoordinateSystems/esri/" + type + ".digest")) {
+          DataInputStream reader = newDataInputStream(type + ".digest")) {
           if (reader != null) {
             while (true) {
               reader.read(bytes);
@@ -121,8 +120,7 @@ public class EsriCoordinateSystems {
       .get(id);
     if (coordinateSystem == null) {
       try (
-        final DataInputStream reader = newDataInputStream(
-          "classpath:CoordinateSystems/esri/Geographic.cs")) {
+        final DataInputStream reader = newDataInputStream("Geographic.cs")) {
         if (reader != null) {
           while (true) {
             final int coordinateSystemId = reader.readInt();
@@ -206,8 +204,7 @@ public class EsriCoordinateSystems {
       .get(id);
     if (coordinateSystem == null) {
       try (
-        final DataInputStream reader = newDataInputStream(
-          "classpath:CoordinateSystems/esri/Projected.cs")) {
+        final DataInputStream reader = newDataInputStream("Projected.cs")) {
         if (reader != null) {
           while (true) {
             final int coordinateSystemId = reader.readInt();
@@ -251,8 +248,7 @@ public class EsriCoordinateSystems {
       .get(id);
     if (coordinateSystem == null) {
       try (
-        final DataInputStream reader = newDataInputStream(
-          "classpath:CoordinateSystems/esri/Vertical.cs")) {
+        final DataInputStream reader = newDataInputStream("Vertical.css")) {
         if (reader != null) {
           while (true) {
             final int coordinateSystemId = reader.readInt();
@@ -297,7 +293,7 @@ public class EsriCoordinateSystems {
 
   private static DataInputStream newDataInputStream(final String fileName) {
     final InputStream in = EpsgCoordinateSystems.class
-      .getResourceAsStream("/org/jeometry/coordinatesystem/esri/" + fileName + ".bin");
+      .getResourceAsStream("/org/jeometry/coordinatesystem/esri/" + fileName);
     return new DataInputStream(in);
   }
 
