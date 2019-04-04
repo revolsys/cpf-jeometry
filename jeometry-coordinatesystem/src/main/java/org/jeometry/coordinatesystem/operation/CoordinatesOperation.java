@@ -1,6 +1,6 @@
 package org.jeometry.coordinatesystem.operation;
 
-import org.jeometry.coordinatesystem.util.BiConsumerDouble;
+import org.jeometry.common.function.BiConsumerDouble;
 
 public interface CoordinatesOperation {
 

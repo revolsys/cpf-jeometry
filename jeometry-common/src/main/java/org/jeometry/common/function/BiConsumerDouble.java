@@ -1,4 +1,4 @@
-package org.jeometry.coordinatesystem.util;
+package org.jeometry.common.function;
 
 @FunctionalInterface
 public interface BiConsumerDouble {
