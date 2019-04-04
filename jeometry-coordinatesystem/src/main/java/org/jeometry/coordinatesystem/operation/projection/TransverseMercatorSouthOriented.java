@@ -1,10 +1,8 @@
 package org.jeometry.coordinatesystem.operation.projection;
 
 import org.jeometry.coordinatesystem.model.Ellipsoid;
-import org.jeometry.coordinatesystem.model.GeographicCoordinateSystem;
 import org.jeometry.coordinatesystem.model.NormalizedParameterNames;
 import org.jeometry.coordinatesystem.model.ProjectedCoordinateSystem;
-import org.jeometry.coordinatesystem.model.datum.GeodeticDatum;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
 
 public class TransverseMercatorSouthOriented extends AbstractCoordinatesProjection {
@@ -42,12 +40,10 @@ public class TransverseMercatorSouthOriented extends AbstractCoordinatesProjecti
   private final double y0;
 
   public TransverseMercatorSouthOriented(final ProjectedCoordinateSystem cs) {
-    final GeographicCoordinateSystem geographicCS = cs.getGeographicCoordinateSystem();
-    final GeodeticDatum geodeticDatum = geographicCS.getDatum();
     final double centralMeridian = cs.getDoubleParameter(NormalizedParameterNames.CENTRAL_MERIDIAN);
     final double scaleFactor = cs.getDoubleParameter(NormalizedParameterNames.SCALE_FACTOR);
 
-    this.ellipsoid = geodeticDatum.getEllipsoid();
+    this.ellipsoid = cs.getEllipsoid();
     this.x0 = cs.getDoubleParameter(NormalizedParameterNames.FALSE_EASTING);
     this.y0 = cs.getDoubleParameter(NormalizedParameterNames.FALSE_NORTHING);
     this.λ0 = Math.toRadians(centralMeridian);

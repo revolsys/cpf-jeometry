@@ -1,10 +1,8 @@
 package org.jeometry.coordinatesystem.operation.projection;
 
 import org.jeometry.coordinatesystem.model.Ellipsoid;
-import org.jeometry.coordinatesystem.model.GeographicCoordinateSystem;
 import org.jeometry.coordinatesystem.model.NormalizedParameterNames;
 import org.jeometry.coordinatesystem.model.ProjectedCoordinateSystem;
-import org.jeometry.coordinatesystem.model.datum.GeodeticDatum;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
 import org.jeometry.coordinatesystem.util.Angle;
 
@@ -116,8 +114,6 @@ public class AlbersConicEqualArea extends AbstractCoordinatesProjection {
   private final double oneOver2e;
 
   public AlbersConicEqualArea(final ProjectedCoordinateSystem cs) {
-    final GeographicCoordinateSystem geographicCS = cs.getGeographicCoordinateSystem();
-    final GeodeticDatum geodeticDatum = geographicCS.getDatum();
     final double firstStandardParallel = cs
       .getDoubleParameter(NormalizedParameterNames.STANDARD_PARALLEL_1);
     final double secondStandardParallel = cs
@@ -125,7 +121,7 @@ public class AlbersConicEqualArea extends AbstractCoordinatesProjection {
     final double centralMeridian = cs.getDoubleParameter(NormalizedParameterNames.CENTRAL_MERIDIAN);
     final double latitudeOfProjection = cs
       .getDoubleParameter(NormalizedParameterNames.LATITUDE_OF_ORIGIN);
-    this.ellipsoid = geodeticDatum.getEllipsoid();
+    this.ellipsoid = cs.getEllipsoid();
     this.xo = cs.getDoubleParameter(NormalizedParameterNames.FALSE_EASTING);
     this.yo = cs.getDoubleParameter(NormalizedParameterNames.FALSE_NORTHING);
     this.λo = Math.toRadians(centralMeridian);

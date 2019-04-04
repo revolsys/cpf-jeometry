@@ -13,4 +13,12 @@ public interface CoordinateSystemProxy {
     }
   }
 
+  default String getCoordinateSystemName() {
+    final CoordinateSystem coordinateSystem = getCoordinateSystem();
+    if (coordinateSystem == null) {
+      return "Unknown";
+    } else {
+      return coordinateSystem.getCoordinateSystemName();
+    }
+  }
 }

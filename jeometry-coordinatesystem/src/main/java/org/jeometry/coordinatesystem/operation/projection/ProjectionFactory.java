@@ -6,9 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jeometry.coordinatesystem.model.CoordinateOperationMethod;
-import org.jeometry.coordinatesystem.model.CoordinateSystem;
 import org.jeometry.coordinatesystem.model.ProjectedCoordinateSystem;
-import org.jeometry.coordinatesystem.operation.CoordinatesOperation;
 
 public final class ProjectionFactory {
   /** The map from projection names to projection classes. */
@@ -17,15 +15,6 @@ public final class ProjectionFactory {
   static {
     registerCoordinatesProjection(CoordinateOperationMethod.LAMBERT_CONIC_CONFORMAL_2SP_BELGIUM,
       LambertConicConformal.class);
-  }
-
-  public static CoordinatesOperation getCoordinatesOperation(
-    final CoordinateSystem fromCoordinateSystem, final CoordinateSystem toCoordinateSystem) {
-    if (fromCoordinateSystem == null) {
-      return null;
-    } else {
-      return fromCoordinateSystem.getCoordinatesOperation(toCoordinateSystem);
-    }
   }
 
   public static CoordinatesProjection newCoordinatesProjection(

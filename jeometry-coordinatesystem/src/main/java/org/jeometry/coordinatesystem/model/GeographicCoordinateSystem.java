@@ -209,11 +209,16 @@ public class GeographicCoordinateSystem extends AbstractHorizontalCoordinateSyst
   }
 
   @Override
-  public String getCoordinateSystemType() {
-    return "Geographic";
+  public CoordinateSystemType getCoordinateSystemType() {
+    return CoordinateSystemType.GEOGRAPHIC;
   }
 
   public GeodeticDatum getDatum() {
+    return this.geodeticDatum;
+  }
+
+  @Override
+  public GeodeticDatum getGeodeticDatum() {
     return this.geodeticDatum;
   }
 
@@ -222,7 +227,7 @@ public class GeographicCoordinateSystem extends AbstractHorizontalCoordinateSyst
     final Unit<Angle> unit = this.angularUnit.getUnit();
     final UnitConverter radianConverter = unit.getConverterTo(Units.RADIAN);
 
-    final Ellipsoid ellipsoid = this.geodeticDatum.getEllipsoid();
+    final Ellipsoid ellipsoid = getEllipsoid();
     final double radius = ellipsoid.getSemiMajorAxis();
     final double radianFactor = radianConverter.convert(1);
     return Units.METRE.multiply(radius).multiply(radianFactor);
@@ -231,7 +236,7 @@ public class GeographicCoordinateSystem extends AbstractHorizontalCoordinateSyst
   @Override
   public LinearUnit getLinearUnit() {
 
-    final Ellipsoid ellipsoid = this.geodeticDatum.getEllipsoid();
+    final Ellipsoid ellipsoid = getEllipsoid();
     final double radius = ellipsoid.getSemiMajorAxis();
     final double radianFactor = this.angularUnit.toRadians(1);
     final double metres = radius * radianFactor;

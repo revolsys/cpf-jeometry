@@ -25,7 +25,6 @@ import org.jeometry.coordinatesystem.model.CompoundCoordinateSystem;
 import org.jeometry.coordinatesystem.model.CoordinateOperation;
 import org.jeometry.coordinatesystem.model.CoordinateOperationMethod;
 import org.jeometry.coordinatesystem.model.CoordinateSystem;
-import org.jeometry.coordinatesystem.model.CoordinateSystemType;
 import org.jeometry.coordinatesystem.model.Ellipsoid;
 import org.jeometry.coordinatesystem.model.EngineeringCoordinateSystem;
 import org.jeometry.coordinatesystem.model.EpsgAuthority;
@@ -59,6 +58,44 @@ import org.slf4j.LoggerFactory;
 
 public final class EpsgCoordinateSystems {
 
+  public static class EpsgCoordinateSystemType {
+    public static final List<String> TYPE_NAMES = Arrays.asList("spherical", "ellipsoidal",
+      "Cartesian", "vertical");
+
+    private final int id;
+
+    private final int type;
+
+    private final boolean deprecated;
+
+    public EpsgCoordinateSystemType(final int id, final int type, final boolean deprecated) {
+      this.id = id;
+      this.type = type;
+      this.deprecated = deprecated;
+    }
+
+    public int getId() {
+      return this.id;
+    }
+
+    public int getType() {
+      return this.type;
+    }
+
+    public String getTypeName() {
+      return TYPE_NAMES.get(this.type);
+    }
+
+    public boolean isDeprecated() {
+      return this.deprecated;
+    }
+
+    @Override
+    public String toString() {
+      return getTypeName();
+    }
+  }
+
   private static final HashMap<Integer, Area> AREA_BY_ID = new HashMap<>();
 
   private static final Map<String, AxisName> AXIS_NAME_BY_NAME = new HashMap<>();
@@ -69,7 +106,7 @@ public final class EpsgCoordinateSystems {
 
   private static final Map<String, CoordinateSystem> COORDINATE_SYSTEM_BY_NAME = new TreeMap<>();
 
-  private static final HashMap<Integer, CoordinateSystemType> COORDINATE_SYSTEM_TYPE_BY_ID = new HashMap<>();
+  private static final HashMap<Integer, EpsgCoordinateSystemType> COORDINATE_SYSTEM_TYPE_BY_ID = new HashMap<>();
 
   private static final HashMap<Integer, List<CoordinateSystem>> COORDINATE_SYSTEMS_BY_HASH_CODE = new HashMap<>();
 
@@ -211,7 +248,7 @@ public final class EpsgCoordinateSystems {
             final boolean deprecated = coordinateSystem.isDeprecated();
             if (coordinateSystem instanceof GeographicCoordinateSystem) {
               final GeographicCoordinateSystem geographicCs = (GeographicCoordinateSystem)coordinateSystem;
-              final GeodeticDatum geodeticDatum = geographicCs.getDatum();
+              final GeodeticDatum geodeticDatum = geographicCs.getGeodeticDatum();
               final PrimeMeridian primeMeridian = geographicCs.getPrimeMeridian();
               final CoordinateSystem sourceCoordinateSystem = geographicCs
                 .getSourceCoordinateSystem();
@@ -514,7 +551,7 @@ public final class EpsgCoordinateSystems {
           final String name = readStringUtf8ByteCount(reader);
           final Area area = readCode(reader, AREA_BY_ID);
           final int type = reader.readByte();
-          final CoordinateSystemType coordinateSystemType = readCode(reader,
+          final EpsgCoordinateSystemType coordinateSystemType = readCode(reader,
             COORDINATE_SYSTEM_TYPE_BY_ID);
           final Datum datum = readCode(reader, DATUM_BY_ID);
           final CoordinateSystem sourceCoordinateSystem = readCode(reader, COORDINATE_SYSTEM_BY_ID);
@@ -582,8 +619,8 @@ public final class EpsgCoordinateSystems {
           final int type = reader.readByte();
           final boolean deprecated = readBoolean(reader);
 
-          final CoordinateSystemType coordinateSystemType = new CoordinateSystemType(id, type,
-            deprecated);
+          final EpsgCoordinateSystemType coordinateSystemType = new EpsgCoordinateSystemType(id,
+            type, deprecated);
           COORDINATE_SYSTEM_TYPE_BY_ID.put(id, coordinateSystemType);
         }
       }

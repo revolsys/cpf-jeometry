@@ -12,6 +12,7 @@ import java.util.TreeMap;
 import javax.measure.Unit;
 import javax.measure.quantity.Length;
 
+import org.jeometry.coordinatesystem.model.datum.GeodeticDatum;
 import org.jeometry.coordinatesystem.model.unit.AngularUnit;
 import org.jeometry.coordinatesystem.model.unit.LinearUnit;
 import org.jeometry.coordinatesystem.model.unit.Radian;
@@ -166,9 +167,9 @@ public class ProjectedCoordinateSystem extends AbstractHorizontalCoordinateSyste
 
   @Override
   public boolean equalsExact(final CoordinateSystem coordinateSystem) {
-    if (coordinateSystem instanceof GeocentricCoordinateSystem) {
-      final GeocentricCoordinateSystem geocentricCoordinateSystem = (GeocentricCoordinateSystem)coordinateSystem;
-      return equalsExact(geocentricCoordinateSystem);
+    if (coordinateSystem instanceof ProjectedCoordinateSystem) {
+      final ProjectedCoordinateSystem projectedCoordinateSystem = (ProjectedCoordinateSystem)coordinateSystem;
+      return equalsExact(projectedCoordinateSystem);
     }
     return false;
   }
@@ -204,8 +205,8 @@ public class ProjectedCoordinateSystem extends AbstractHorizontalCoordinateSyste
   }
 
   @Override
-  public String getCoordinateSystemType() {
-    return "Projected";
+  public CoordinateSystemType getCoordinateSystemType() {
+    return CoordinateSystemType.PROJECTED;
   }
 
   public double getDoubleParameter(final ParameterName key) {
@@ -217,8 +218,9 @@ public class ProjectedCoordinateSystem extends AbstractHorizontalCoordinateSyste
     }
   }
 
-  public Ellipsoid getEllipsoid() {
-    return this.geographicCoordinateSystem.getDatum().getEllipsoid();
+  @Override
+  public GeodeticDatum getGeodeticDatum() {
+    return this.geographicCoordinateSystem.getGeodeticDatum();
   }
 
   public GeographicCoordinateSystem getGeographicCoordinateSystem() {

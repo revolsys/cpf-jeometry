@@ -2,8 +2,7 @@ package org.jeometry.coordinatesystem.model;
 
 import org.jeometry.coordinatesystem.model.systems.EpsgCoordinateSystems;
 
-public interface HorizontalCoordinateSystem
-  extends CoordinateSystem, HorizontalCoordinateSystemProxy {
+public interface HorizontalCoordinateSystem extends CoordinateSystem {
 
   @SuppressWarnings("unchecked")
   default <C extends CoordinateSystem> C getCompound(

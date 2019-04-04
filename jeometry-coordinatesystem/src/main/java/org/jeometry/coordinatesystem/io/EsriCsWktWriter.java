@@ -121,7 +121,7 @@ public class EsriCsWktWriter {
     final int indentLevel) throws IOException {
     out.write("GEOGCS[");
     write(out, coordinateSystem.getCoordinateSystemName(), incrementIndent(indentLevel));
-    final GeodeticDatum geodeticDatum = coordinateSystem.getDatum();
+    final GeodeticDatum geodeticDatum = coordinateSystem.getGeodeticDatum();
     if (geodeticDatum != null) {
       out.write(",");
       indent(out, incrementIndent(indentLevel));

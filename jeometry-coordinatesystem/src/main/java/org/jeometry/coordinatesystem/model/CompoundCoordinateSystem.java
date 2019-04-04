@@ -100,8 +100,8 @@ public class CompoundCoordinateSystem extends AbstractCoordinateSystem {
   }
 
   @Override
-  public String getCoordinateSystemType() {
-    return "Compound";
+  public CoordinateSystemType getCoordinateSystemType() {
+    return CoordinateSystemType.COMPOUND;
   }
 
   @SuppressWarnings("unchecked")

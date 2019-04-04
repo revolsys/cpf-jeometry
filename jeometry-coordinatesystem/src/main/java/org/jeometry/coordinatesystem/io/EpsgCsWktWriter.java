@@ -98,7 +98,7 @@ public class EpsgCsWktWriter {
     if (coordinateSystem != null) {
       out.print("GEOGCS[");
       write(out, coordinateSystem.getCoordinateSystemName());
-      final GeodeticDatum geodeticDatum = coordinateSystem.getDatum();
+      final GeodeticDatum geodeticDatum = coordinateSystem.getGeodeticDatum();
       write(out, geodeticDatum);
       final PrimeMeridian primeMeridian = coordinateSystem.getPrimeMeridian();
       write(out, primeMeridian);

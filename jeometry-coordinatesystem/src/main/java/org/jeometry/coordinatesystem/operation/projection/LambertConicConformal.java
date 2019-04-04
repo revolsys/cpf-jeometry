@@ -1,10 +1,8 @@
 package org.jeometry.coordinatesystem.operation.projection;
 
 import org.jeometry.coordinatesystem.model.Ellipsoid;
-import org.jeometry.coordinatesystem.model.GeographicCoordinateSystem;
 import org.jeometry.coordinatesystem.model.NormalizedParameterNames;
 import org.jeometry.coordinatesystem.model.ProjectedCoordinateSystem;
-import org.jeometry.coordinatesystem.model.datum.GeodeticDatum;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
 import org.jeometry.coordinatesystem.util.Angle;
 
@@ -29,8 +27,6 @@ public class LambertConicConformal extends AbstractCoordinatesProjection {
   private final double y0;
 
   public LambertConicConformal(final ProjectedCoordinateSystem cs) {
-    final GeographicCoordinateSystem geographicCS = cs.getGeographicCoordinateSystem();
-    final GeodeticDatum geodeticDatum = geographicCS.getDatum();
     final double latitudeOfProjection = cs
       .getDoubleParameter(NormalizedParameterNames.LATITUDE_OF_ORIGIN);
     final double centralMeridian = cs.getDoubleParameter(NormalizedParameterNames.CENTRAL_MERIDIAN);
@@ -39,7 +35,7 @@ public class LambertConicConformal extends AbstractCoordinatesProjection {
     final double secondStandardParallel = cs
       .getDoubleParameter(NormalizedParameterNames.STANDARD_PARALLEL_2);
 
-    final Ellipsoid ellipsoid = geodeticDatum.getEllipsoid();
+    final Ellipsoid ellipsoid = cs.getEllipsoid();
     this.x0 = cs.getDoubleParameter(NormalizedParameterNames.FALSE_EASTING);
     this.y0 = cs.getDoubleParameter(NormalizedParameterNames.FALSE_NORTHING);
     this.λ0 = Math.toRadians(centralMeridian);

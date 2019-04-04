@@ -1,10 +1,8 @@
 package org.jeometry.coordinatesystem.operation.projection;
 
 import org.jeometry.coordinatesystem.model.Ellipsoid;
-import org.jeometry.coordinatesystem.model.GeographicCoordinateSystem;
 import org.jeometry.coordinatesystem.model.NormalizedParameterNames;
 import org.jeometry.coordinatesystem.model.ProjectedCoordinateSystem;
-import org.jeometry.coordinatesystem.model.datum.GeodeticDatum;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
 import org.jeometry.coordinatesystem.util.Angle;
 
@@ -19,11 +17,9 @@ public class Mercator1SPSpherical extends AbstractCoordinatesProjection {
   private final double y0;
 
   public Mercator1SPSpherical(final ProjectedCoordinateSystem cs) {
-    final GeographicCoordinateSystem geograφcCS = cs.getGeographicCoordinateSystem();
-    final GeodeticDatum geodeticDatum = geograφcCS.getDatum();
     final double centralMeridian = cs.getDoubleParameter(NormalizedParameterNames.CENTRAL_MERIDIAN);
 
-    final Ellipsoid ellipsoid = geodeticDatum.getEllipsoid();
+    final Ellipsoid ellipsoid = cs.getEllipsoid();
     this.x0 = cs.getDoubleParameter(NormalizedParameterNames.FALSE_EASTING);
     this.y0 = cs.getDoubleParameter(NormalizedParameterNames.FALSE_NORTHING);
     this.λ0 = Math.toRadians(centralMeridian);

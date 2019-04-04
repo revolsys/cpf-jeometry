@@ -17,8 +17,8 @@ import java.util.TreeMap;
 import org.jeometry.coordinatesystem.io.WktCsParser;
 import org.jeometry.coordinatesystem.model.Authority;
 import org.jeometry.coordinatesystem.model.BaseAuthority;
-import org.jeometry.coordinatesystem.model.CompoundCoordinateSystem;
 import org.jeometry.coordinatesystem.model.CoordinateSystem;
+import org.jeometry.coordinatesystem.model.CoordinateSystemType;
 import org.jeometry.coordinatesystem.model.Ellipsoid;
 import org.jeometry.coordinatesystem.model.GeographicCoordinateSystem;
 import org.jeometry.coordinatesystem.model.ParameterName;
@@ -79,8 +79,8 @@ public class EsriCoordinateSystems {
     if (ids == null) {
       final byte[] bytes = new byte[16];
       final ByteArray newDigest = new ByteArray(bytes);
-      final String type = coordinateSystem.getCoordinateSystemType();
-      if (coordinateSystem instanceof CompoundCoordinateSystem) {
+      final CoordinateSystemType type = coordinateSystem.getCoordinateSystemType();
+      if (type.isCompound()) {
         return Collections.emptyList();
       } else {
         try (

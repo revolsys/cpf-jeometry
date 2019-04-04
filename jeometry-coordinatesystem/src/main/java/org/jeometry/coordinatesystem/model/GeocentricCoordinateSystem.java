@@ -81,11 +81,16 @@ public class GeocentricCoordinateSystem extends AbstractHorizontalCoordinateSyst
   }
 
   @Override
-  public String getCoordinateSystemType() {
-    return "Geocentric";
+  public CoordinateSystemType getCoordinateSystemType() {
+    return CoordinateSystemType.GEOCENTRIC;
   }
 
   public GeodeticDatum getDatum() {
+    return this.geodeticDatum;
+  }
+
+  @Override
+  public GeodeticDatum getGeodeticDatum() {
     return this.geodeticDatum;
   }
 

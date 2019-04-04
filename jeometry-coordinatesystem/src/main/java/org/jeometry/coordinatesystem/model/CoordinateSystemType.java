@@ -1,42 +1,60 @@
 package org.jeometry.coordinatesystem.model;
 
-import java.util.Arrays;
-import java.util.List;
+public enum CoordinateSystemType {
+  NONE(false), //
+  COMPOUND(true), //
+  ENGINEERING(true), //
+  GEOCENTRIC(true), //
+  GEOGRAPHIC(true), //
+  PROJECTED(true), //
+  VERTICAL(false) //
+  ;
 
-public class CoordinateSystemType {
-  public static final List<String> TYPE_NAMES = Arrays.asList("spherical", "ellipsoidal",
-    "Cartesian", "vertical");
+  private boolean horizontal;
 
-  private final int id;
+  private String name;
 
-  private final int type;
-
-  private final boolean deprecated;
-
-  public CoordinateSystemType(final int id, final int type, final boolean deprecated) {
-    this.id = id;
-    this.type = type;
-    this.deprecated = deprecated;
+  private CoordinateSystemType(final boolean horizontal) {
+    this.horizontal = horizontal;
+    final String name = name();
+    this.name = name.substring(0, 1) + name.substring(1).toLowerCase();
   }
 
-  public int getId() {
-    return this.id;
+  public String getName() {
+    return this.name;
   }
 
-  public int getType() {
-    return this.type;
+  public boolean isCompound() {
+    return CoordinateSystemType.COMPOUND == this;
   }
 
-  public String getTypeName() {
-    return TYPE_NAMES.get(this.type);
+  public boolean isEngineering() {
+    return CoordinateSystemType.ENGINEERING == this;
   }
 
-  public boolean isDeprecated() {
-    return this.deprecated;
+  public boolean isGeocentric() {
+    return CoordinateSystemType.GEOCENTRIC == this;
+  }
+
+  public boolean isGeographic() {
+    return CoordinateSystemType.GEOGRAPHIC == this;
+  }
+
+  public boolean isHorizontal() {
+    return this.horizontal;
+  }
+
+  public boolean isProjected() {
+    return CoordinateSystemType.PROJECTED == this;
+  }
+
+  public boolean isVertical() {
+    return CoordinateSystemType.VERTICAL == this;
   }
 
   @Override
   public String toString() {
-    return getTypeName();
+    return this.name;
   }
+
 }

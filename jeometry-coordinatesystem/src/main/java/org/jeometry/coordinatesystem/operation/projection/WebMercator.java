@@ -24,7 +24,7 @@ public class WebMercator extends AbstractCoordinatesProjection {
     this.xo = cs.getDoubleParameter(NormalizedParameterNames.FALSE_EASTING);
     this.yo = cs.getDoubleParameter(NormalizedParameterNames.FALSE_NORTHING);
     this.λo = Math.toRadians(centralMeridian);
-    final Ellipsoid ellipsoid = cs.getGeographicCoordinateSystem().getDatum().getEllipsoid();
+    final Ellipsoid ellipsoid = cs.getEllipsoid();
     this.a = ellipsoid.getSemiMajorAxis();
   }
 

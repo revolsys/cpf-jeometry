@@ -117,8 +117,8 @@ public class VerticalCoordinateSystem extends AbstractCoordinateSystem {
   }
 
   @Override
-  public String getCoordinateSystemType() {
-    return "Vertical";
+  public CoordinateSystemType getCoordinateSystemType() {
+    return CoordinateSystemType.VERTICAL;
   }
 
   public VerticalDatum getDatum() {

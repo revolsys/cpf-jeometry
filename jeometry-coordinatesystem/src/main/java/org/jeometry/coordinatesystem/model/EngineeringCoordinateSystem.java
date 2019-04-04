@@ -7,6 +7,7 @@ import javax.measure.Unit;
 import javax.measure.quantity.Length;
 
 import org.jeometry.coordinatesystem.model.datum.EngineeringDatum;
+import org.jeometry.coordinatesystem.model.datum.GeodeticDatum;
 import org.jeometry.coordinatesystem.model.unit.LinearUnit;
 import org.jeometry.coordinatesystem.model.unit.UnitOfMeasure;
 
@@ -76,12 +77,17 @@ public class EngineeringCoordinateSystem extends AbstractHorizontalCoordinateSys
   }
 
   @Override
-  public String getCoordinateSystemType() {
-    return "Engineering";
+  public CoordinateSystemType getCoordinateSystemType() {
+    return CoordinateSystemType.ENGINEERING;
   }
 
   public EngineeringDatum getDatum() {
     return this.engineeringDatum;
+  }
+
+  @Override
+  public GeodeticDatum getGeodeticDatum() {
+    return null;
   }
 
   @Override
