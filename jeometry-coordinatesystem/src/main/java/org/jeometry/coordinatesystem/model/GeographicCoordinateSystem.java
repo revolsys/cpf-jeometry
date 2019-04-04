@@ -21,26 +21,6 @@ import org.jeometry.coordinatesystem.operation.gridshift.HorizontalShiftOperatio
 import tec.uom.se.unit.Units;
 
 public class GeographicCoordinateSystem extends AbstractHorizontalCoordinateSystem {
-  public static final double EARTH_RADIUS = 6378137;
-
-  public static double distanceMetres(final double lon1, final double lat1, final double lon2,
-    final double lat2) {
-    final double lon1Radians = Math.toRadians(lon1);
-    final double lon2Radians = Math.toRadians(lon2);
-    final double width = lon2Radians - lon1Radians;
-
-    final double lat1Radians = Math.toRadians(lat1);
-    final double lat2Radians = Math.toRadians(lat2);
-
-    final double height = lat2Radians - lat1Radians;
-
-    final double sinHeightOver2 = Math.sin(height / 2);
-    final double sinWidthOver2 = Math.sin(width / 2);
-    final double distance = 2 * EARTH_RADIUS * Math.asin(Math.sqrt(sinHeightOver2 * sinHeightOver2
-      + Math.cos(lat1Radians) * Math.cos(lat2Radians) * sinWidthOver2 * sinWidthOver2));
-    return distance;
-  }
-
   private static PrimeMeridian getPrimeMeridian(final GeodeticDatum datum) {
     if (datum == null) {
       return null;
@@ -152,6 +132,12 @@ public class GeographicCoordinateSystem extends AbstractHorizontalCoordinateSyst
   @Override
   public GeographicCoordinateSystem clone() {
     return (GeographicCoordinateSystem)super.clone();
+  }
+
+  public double distanceMetres(final double lon1, final double lat1, final double lon2,
+    final double lat2) {
+    final Ellipsoid ellipsoid = getEllipsoid();
+    return ellipsoid.distanceMetres(lon1, lat1, lon2, lat2);
   }
 
   @Override
