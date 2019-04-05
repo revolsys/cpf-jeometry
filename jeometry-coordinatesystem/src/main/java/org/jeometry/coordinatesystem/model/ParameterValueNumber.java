@@ -2,8 +2,8 @@ package org.jeometry.coordinatesystem.model;
 
 import java.security.MessageDigest;
 
+import org.jeometry.common.number.Doubles;
 import org.jeometry.coordinatesystem.model.unit.UnitOfMeasure;
-import org.jeometry.coordinatesystem.util.Doubles;
 import org.jeometry.coordinatesystem.util.Md5;
 
 public class ParameterValueNumber extends Number implements ParameterValue {

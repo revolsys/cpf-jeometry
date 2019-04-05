@@ -1,7 +1,7 @@
 package org.jeometry.coordinatesystem.operation;
 
 import org.jeometry.common.function.BiConsumerDouble;
-import org.jeometry.coordinatesystem.util.Doubles;
+import org.jeometry.common.number.Doubles;
 
 public class CoordinatesOperationPoint {
   public double x;

@@ -4,7 +4,7 @@ import org.jeometry.coordinatesystem.model.Ellipsoid;
 import org.jeometry.coordinatesystem.model.NormalizedParameterNames;
 import org.jeometry.coordinatesystem.model.ProjectedCoordinateSystem;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
-import org.jeometry.coordinatesystem.util.Angle;
+import org.jeometry.common.math.Angle;
 
 /**
  * <h1>Albers Equal Area</h1>

@@ -1,10 +1,10 @@
 package org.jeometry.coordinatesystem.operation.projection;
 
+import org.jeometry.common.math.Angle;
 import org.jeometry.coordinatesystem.model.Ellipsoid;
 import org.jeometry.coordinatesystem.model.NormalizedParameterNames;
 import org.jeometry.coordinatesystem.model.ProjectedCoordinateSystem;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
-import org.jeometry.coordinatesystem.util.Angle;
 
 /**
  * An implementation of the Transverse Mercator projection. See section 1.3.5 of
