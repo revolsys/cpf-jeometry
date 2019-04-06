@@ -242,6 +242,17 @@ public interface Numbers {
     }
   }
 
+  static double max(final Iterable<? extends Number> numbers) {
+    double max = -Double.MAX_VALUE;
+    for (final Number number : numbers) {
+      final double value = number.doubleValue();
+      if (value > max) {
+        max = value;
+      }
+    }
+    return max;
+  }
+
   static Integer min(final Integer number1, final Integer number2) {
     if (number1 == null) {
       return number2;
@@ -252,6 +263,17 @@ public interface Numbers {
     } else {
       return number2;
     }
+  }
+
+  static double min(final Iterable<? extends Number> numbers) {
+    double min = Double.MAX_VALUE;
+    for (final Number number : numbers) {
+      final double value = number.doubleValue();
+      if (value < min) {
+        min = value;
+      }
+    }
+    return min;
   }
 
   static double ratio(final Number number, final Number from, final Number to) {

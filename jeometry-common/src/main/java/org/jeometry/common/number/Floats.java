@@ -50,6 +50,16 @@ public class Floats {
     }
   }
 
+  public static int sgn(final float x) {
+    if (x > 0.0F) {
+      return 1;
+    }
+    if (x < 0.0F) {
+      return -1;
+    }
+    return 0;
+  }
+
   public static float subtract(final float left, final Number right) {
     return left - right.floatValue();
   }

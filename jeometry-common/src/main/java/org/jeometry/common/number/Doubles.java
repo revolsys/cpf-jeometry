@@ -44,6 +44,12 @@ public class Doubles {
     }
   }
 
+  public static final int BYTES_IN_DOUBLE = 8;
+
+  public static final String MAX_DOUBLE_STRING = toString(Double.MAX_VALUE);
+
+  public static final String MIN_DOUBLE_STRING = toString(-Double.MAX_VALUE);
+
   public static double add(final double left, final Number right) {
     return left + right.doubleValue();
   }
@@ -146,6 +152,27 @@ public class Doubles {
     }
   }
 
+  public static double avg(final double a, final double b) {
+    return (a + b) / 2d;
+  }
+
+  /**
+   * Clamps a <tt>double</tt> value to a given range.
+   * @param x the value to clamp
+   * @param min the minimum value of the range
+   * @param max the maximum value of the range
+   * @return the clamped value
+   */
+  public static double clamp(final double x, final double min, final double max) {
+    if (x < min) {
+      return min;
+    }
+    if (x > max) {
+      return max;
+    }
+    return x;
+  }
+
   public static double divide(final double left, final Number right) {
     return left / right.doubleValue();
   }
@@ -196,6 +223,27 @@ public class Doubles {
     }
   }
 
+  public static int hashCode(final double d) {
+    final long f = Double.doubleToLongBits(d);
+    return (int)(f ^ f >>> 32);
+  }
+
+  /** sqrt(a^2 + b^2) without under/overflow. **/
+
+  public static double hypot(final double a, final double b) {
+    double r;
+    if (Math.abs(a) > Math.abs(b)) {
+      r = b / a;
+      r = Math.abs(a) * Math.sqrt(1 + r * r);
+    } else if (b != 0) {
+      r = a / b;
+      r = Math.abs(b) * Math.sqrt(1 + r * r);
+    } else {
+      r = 0.0;
+    }
+    return r;
+  }
+
   public static double makePrecise(final double scale, final double value) {
     if (scale <= 0) {
       return value;
@@ -233,6 +281,30 @@ public class Doubles {
     } else {
       return value;
     }
+  }
+
+  public static double max(final double... values) {
+    double max = -Double.MAX_VALUE;
+    for (final double value : values) {
+      if (value > max) {
+        max = value;
+      }
+    }
+    return max;
+  }
+
+  public static double midpoint(final double d1, final double d2) {
+    return d1 + (d2 - d1) / 2;
+  }
+
+  public static double min(final double... values) {
+    double min = Double.MAX_VALUE;
+    for (final double value : values) {
+      if (value < min) {
+        min = value;
+      }
+    }
+    return min;
   }
 
   public static double mod(final double left, final Number right) {
@@ -296,6 +368,16 @@ public class Doubles {
     }
   }
 
+  public static int sgn(final double x) {
+    if (x > 0.0D) {
+      return 1;
+    }
+    if (x < 0.0D) {
+      return -1;
+    }
+    return 0;
+  }
+
   public static double subtract(final double left, final Number right) {
     return left - right.doubleValue();
   }
@@ -322,6 +404,31 @@ public class Doubles {
     } catch (final Throwable e) {
       return null;
     }
+  }
+
+  public static double[] toDoubleArray(final List<? extends Number> numbers) {
+    final double[] doubles = new double[numbers.size()];
+    for (int i = 0; i < doubles.length; i++) {
+      final Number number = numbers.get(i);
+      doubles[i] = number.doubleValue();
+    }
+    return doubles;
+  }
+
+  public static double[] toDoubleArray(final String... values) {
+    final double[] doubles = new double[values.length];
+    for (int i = 0; i < doubles.length; i++) {
+      doubles[i] = Double.valueOf(values[i]);
+    }
+    return doubles;
+  }
+
+  public static double[] toDoubleArraySplit(final String value) {
+    return toDoubleArray(value.split(","));
+  }
+
+  public static double[] toDoubleArraySplit(final String value, final String regex) {
+    return toDoubleArray(value.split(regex));
   }
 
   public static String toString(final double number) {
@@ -530,30 +637,5 @@ public class Doubles {
       }
     }
     writer.write(buf);
-  }
-
-  public static double[] toDoubleArray(final List<? extends Number> numbers) {
-    final double[] doubles = new double[numbers.size()];
-    for (int i = 0; i < doubles.length; i++) {
-      final Number number = numbers.get(i);
-      doubles[i] = number.doubleValue();
-    }
-    return doubles;
-  }
-
-  public static double[] toDoubleArray(final String... values) {
-    final double[] doubles = new double[values.length];
-    for (int i = 0; i < doubles.length; i++) {
-      doubles[i] = Double.valueOf(values[i]);
-    }
-    return doubles;
-  }
-
-  public static double[] toDoubleArraySplit(final String value) {
-    return toDoubleArray(value.split(","));
-  }
-
-  public static double[] toDoubleArraySplit(final String value, final String regex) {
-    return toDoubleArray(value.split(regex));
   }
 }

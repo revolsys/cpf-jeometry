@@ -3,6 +3,8 @@ package org.jeometry.common.number;
 import java.util.List;
 
 public class Integers {
+  public static final int BYTES_IN_INT = 4;
+
   public static int add(final int left, final Number right) {
     return left + right.intValue();
   }
@@ -17,6 +19,48 @@ public class Integers {
 
   public static boolean isInteger(final String value) {
     return toInteger(value) != null;
+  }
+
+  public static int max(final int... values) {
+    int max = Integer.MIN_VALUE;
+    for (final int value : values) {
+      if (value > max) {
+        max = value;
+      }
+    }
+    return max;
+  }
+
+  public static int max(final Iterable<Integer> numbers) {
+    int min = Integer.MIN_VALUE;
+    for (final Integer number : numbers) {
+      final int value = number.intValue();
+      if (value > min) {
+        min = value;
+      }
+    }
+    return min;
+  }
+
+  public static int min(final int... values) {
+    int min = Integer.MAX_VALUE;
+    for (final int value : values) {
+      if (value < min) {
+        min = value;
+      }
+    }
+    return min;
+  }
+
+  public static int min(final Iterable<Integer> numbers) {
+    int max = Integer.MAX_VALUE;
+    for (final Integer number : numbers) {
+      final int value = number.intValue();
+      if (value < max) {
+        max = value;
+      }
+    }
+    return max;
   }
 
   public static int mod(final int left, final Number right) {
@@ -41,8 +85,47 @@ public class Integers {
     }
   }
 
+  public static int sgn(final int x) {
+    if (x > 0) {
+      return 1;
+    }
+    if (x < 0) {
+      return -1;
+    }
+    return 0;
+  }
+
   public static int subtract(final int left, final Number right) {
     return left - right.intValue();
+  }
+
+  public static int toInt(final byte[] bytes, final int offset) {
+    final byte b1 = bytes[offset];
+    final byte b2 = bytes[offset + 1];
+    final byte b3 = bytes[offset + 2];
+    final byte b4 = bytes[offset + 3];
+    return b1 << 24 | (b2 & 0xFF) << 16 | (b3 & 0xFF) << 8 | b4 & 0xFF;
+  }
+
+  public static int[] toIntArray(final List<? extends Number> numbers) {
+    final int[] ints = new int[numbers.size()];
+    for (int i = 0; i < ints.length; i++) {
+      final Number number = numbers.get(i);
+      ints[i] = number.intValue();
+    }
+    return ints;
+  }
+
+  public static int[] toIntArray(final String... values) {
+    final int[] ints = new int[values.length];
+    for (int i = 0; i < ints.length; i++) {
+      ints[i] = Integer.parseInt(values[i]);
+    }
+    return ints;
+  }
+
+  public static int[] toIntArraySplit(final String value, final String regex) {
+    return toIntArray(value.split(regex));
   }
 
   /**
@@ -173,35 +256,6 @@ public class Integers {
     } else {
       return n;
     }
-  }
-
-  public static int toInt(final byte[] bytes, final int offset) {
-    final byte b1 = bytes[offset];
-    final byte b2 = bytes[offset + 1];
-    final byte b3 = bytes[offset + 2];
-    final byte b4 = bytes[offset + 3];
-    return b1 << 24 | (b2 & 0xFF) << 16 | (b3 & 0xFF) << 8 | b4 & 0xFF;
-  }
-
-  public static int[] toIntArray(final List<? extends Number> numbers) {
-    final int[] ints = new int[numbers.size()];
-    for (int i = 0; i < ints.length; i++) {
-      final Number number = numbers.get(i);
-      ints[i] = number.intValue();
-    }
-    return ints;
-  }
-
-  public static int[] toIntArray(final String... values) {
-    final int[] ints = new int[values.length];
-    for (int i = 0; i < ints.length; i++) {
-      ints[i] = Integer.parseInt(values[i]);
-    }
-    return ints;
-  }
-
-  public static int[] toIntArraySplit(final String value, final String regex) {
-    return toIntArray(value.split(regex));
   }
 
 }

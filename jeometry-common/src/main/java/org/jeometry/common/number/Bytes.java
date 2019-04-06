@@ -17,6 +17,16 @@ public class Bytes {
     return (byte)(left * right.byteValue());
   }
 
+  public static byte sgn(final byte x) {
+    if (x > 0) {
+      return 1;
+    }
+    if (x < 0) {
+      return -1;
+    }
+    return 0;
+  }
+
   public static byte subtract(final byte left, final Number right) {
     return (byte)(left - right.byteValue());
   }

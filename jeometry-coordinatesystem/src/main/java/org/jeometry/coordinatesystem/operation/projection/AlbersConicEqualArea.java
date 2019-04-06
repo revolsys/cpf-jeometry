@@ -1,10 +1,10 @@
 package org.jeometry.coordinatesystem.operation.projection;
 
+import org.jeometry.common.math.Angle;
 import org.jeometry.coordinatesystem.model.Ellipsoid;
 import org.jeometry.coordinatesystem.model.NormalizedParameterNames;
 import org.jeometry.coordinatesystem.model.ProjectedCoordinateSystem;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
-import org.jeometry.common.math.Angle;
 
 /**
  * <h1>Albers Equal Area</h1>

@@ -4,11 +4,33 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class BigDecimals {
+  /**
+   *
+   * @param left The left operand.
+   * @param right The right operand.
+   * @return The new amount.
+   */
+  public static BigDecimal add(final BigDecimal left, final Number right) {
+    return left.add(toValid(right));
+  }
+
   public static boolean equalsNotNull(final BigDecimal number1, final BigDecimal number2) {
     if (number1.compareTo(number2) == 0) {
       return true;
     } else {
       return false;
+    }
+  }
+
+  public static BigDecimal getBigDecimal(final Object value) {
+    if (value == null) {
+      return null;
+    } else {
+      try {
+        return toValid(value);
+      } catch (final Exception e) {
+        return null;
+      }
     }
   }
 
@@ -78,17 +100,5 @@ public class BigDecimals {
 
   public static BigDecimal toValid(final String string) {
     return new BigDecimal(string).stripTrailingZeros();
-  }
-
-  public static BigDecimal getBigDecimal(final Object value) {
-    if (value == null) {
-      return null;
-    } else {
-      try {
-        return toValid(value);
-      } catch (final Exception e) {
-        return null;
-      }
-    }
   }
 }

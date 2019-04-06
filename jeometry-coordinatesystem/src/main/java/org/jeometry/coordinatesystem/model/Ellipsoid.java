@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.MessageDigest;
 
+import org.jeometry.common.math.Angle;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperation;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
-import org.jeometry.common.math.Angle;
 import org.jeometry.coordinatesystem.util.Equals;
 import org.jeometry.coordinatesystem.util.Md5;
 

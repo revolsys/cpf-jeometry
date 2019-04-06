@@ -1,8 +1,6 @@
-package org.jeometry.common.number;
+package org.jeometry.common.datatype;
 
-public class Shorts {
-  public static final int BYTES_IN_SHORT = 2;
-
+public class ShortDataType extends AbstractDataType {
   public static short add(final short left, final Number right) {
     return (short)(left + right.shortValue());
   }
@@ -32,16 +30,6 @@ public class Shorts {
         return false;
       }
     }
-  }
-
-  public static short sgn(final short x) {
-    if (x > 0) {
-      return 1;
-    }
-    if (x < 0) {
-      return -1;
-    }
-    return 0;
   }
 
   public static short subtract(final short left, final Number right) {
@@ -150,4 +138,37 @@ public class Shorts {
     }
   }
 
+  public ShortDataType() {
+    super("short", Short.class, false);
+  }
+
+  @Override
+  protected boolean equalsNotNull(final Object value1, final Object value2) {
+    return (short)value1 == (short)value2;
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public <V> V getMaxValue() {
+    final Short max = Short.MAX_VALUE;
+    return (V)max;
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public <V> V getMinValue() {
+    final Short min = Short.MIN_VALUE;
+    return (V)min;
+  }
+
+  @Override
+  protected Object toObjectDo(final Object value) {
+    final String string = DataTypes.toString(value);
+    return toValid(string);
+  }
+
+  @Override
+  protected String toStringDo(final Object value) {
+    return String.valueOf((short)value);
+  }
 }

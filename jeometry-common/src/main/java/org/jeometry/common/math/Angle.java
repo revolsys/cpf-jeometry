@@ -291,6 +291,16 @@ public class Angle {
     return NONE;
   }
 
+  public static boolean isAcute(final double x1, final double y1, final double x2, final double y2,
+    final double x3, final double y3) {
+    final double dx0 = x1 - x2;
+    final double dy0 = y1 - y2;
+    final double dx1 = x3 - x2;
+    final double dy1 = y3 - y2;
+    final double dotprod = dx0 * dx1 + dy0 * dy1;
+    return dotprod > 0;
+  }
+
   /**
    * Computes the normalized value of an angle, which is the
    * equivalent angle in the range ( -Pi, Pi ].
@@ -575,15 +585,5 @@ public class Angle {
   public static String toDmsStringRadians(double angle) {
     angle = Math.toDegrees(angle);
     return toDmsString(angle);
-  }
-
-  public static boolean isAcute(final double x1, final double y1, final double x2, final double y2,
-    final double x3, final double y3) {
-    final double dx0 = x1 - x2;
-    final double dy0 = y1 - y2;
-    final double dx1 = x3 - x2;
-    final double dy1 = y3 - y2;
-    final double dotprod = dx0 * dx1 + dy0 * dy1;
-    return dotprod > 0;
   }
 }

@@ -1,6 +1,8 @@
 package org.jeometry.common.number;
 
 public class Longs {
+  public static final int BYTES_IN_LONG = 8;
+
   public static long add(final long left, final Number right) {
     return left + right.longValue();
   }
@@ -30,8 +32,24 @@ public class Longs {
     return left * right.longValue();
   }
 
+  public static int sgn(final long x) {
+    if (x > 0L) {
+      return 1;
+    }
+    if (x < 0L) {
+      return -1;
+    }
+    return 0;
+  }
+
   public static long subtract(final long left, final Number right) {
     return left - right.longValue();
+  }
+
+  public static long toLong(final byte[] bytes, final int offset) {
+    final long high = (long)Integers.toInt(bytes, offset) << 32;
+    final long low = (long)Integers.toInt(bytes, offset + 4) << 32 >>> 32;
+    return high | low;
   }
 
   public static long toLong(final int upperInt, final int lowerInt) {
@@ -125,12 +143,6 @@ public class Longs {
         }
       }
     }
-  }
-
-  public static long toLong(final byte[] bytes, final int offset) {
-    final long high = (long)Integers.toInt(bytes, offset) << 32;
-    final long low = (long)Integers.toInt(bytes, offset + 4) << 32 >>> 32;
-    return high | low;
   }
 
 }
