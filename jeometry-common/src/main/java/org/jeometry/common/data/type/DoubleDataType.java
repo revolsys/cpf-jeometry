@@ -1,4 +1,4 @@
-package org.jeometry.common.datatype;
+package org.jeometry.common.data.type;
 
 import org.jeometry.common.number.Doubles;
 

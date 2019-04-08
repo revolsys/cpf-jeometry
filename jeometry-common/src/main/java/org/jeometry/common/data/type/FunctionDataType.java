@@ -1,4 +1,4 @@
-package org.jeometry.common.datatype;
+package org.jeometry.common.data.type;
 
 import java.util.Collection;
 import java.util.Collections;

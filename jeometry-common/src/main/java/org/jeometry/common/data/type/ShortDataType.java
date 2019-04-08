@@ -1,4 +1,4 @@
-package org.jeometry.common.datatype;
+package org.jeometry.common.data.type;
 
 public class ShortDataType extends AbstractDataType {
   public static short add(final short left, final Number right) {

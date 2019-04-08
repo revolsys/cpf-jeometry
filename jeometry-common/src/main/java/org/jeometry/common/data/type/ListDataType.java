@@ -1,4 +1,4 @@
-package org.jeometry.common.datatype;
+package org.jeometry.common.data.type;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

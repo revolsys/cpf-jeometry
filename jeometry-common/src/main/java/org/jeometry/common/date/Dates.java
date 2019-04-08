@@ -13,7 +13,7 @@ import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jeometry.common.datatype.DataTypes;
+import org.jeometry.common.data.type.DataTypes;
 import org.jeometry.common.logging.Logs;
 
 public interface Dates {
@@ -408,6 +408,7 @@ public interface Dates {
     return endTime;
   }
 
+  @SuppressWarnings("deprecation")
   static String toDateTimeString(final Date date) {
     if (date == null) {
       return null;
@@ -556,6 +557,7 @@ public interface Dates {
     return toEllapsedTime(endTime - startTime);
   }
 
+  @SuppressWarnings("deprecation")
   static String toSqlDateString(final Date date) {
     if (date == null) {
       return null;
@@ -615,6 +617,7 @@ public interface Dates {
     }
   }
 
+  @SuppressWarnings("deprecation")
   static String toTimestampString(final Timestamp date) {
     if (date == null) {
       return null;

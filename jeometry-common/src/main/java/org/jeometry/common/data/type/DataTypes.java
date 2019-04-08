@@ -1,4 +1,4 @@
-package org.jeometry.common.datatype;
+package org.jeometry.common.data.type;
 
 import java.awt.Color;
 import java.io.File;
@@ -23,6 +23,7 @@ import java.util.UUID;
 import javax.xml.namespace.QName;
 
 import org.jeometry.common.awt.WebColors;
+import org.jeometry.common.data.identifier.Identifier;
 import org.jeometry.common.date.Dates;
 import org.jeometry.common.exception.Exceptions;
 import org.jeometry.common.io.PathName;
@@ -234,6 +235,9 @@ public final class DataTypes {
     register(Float.TYPE, FLOAT);
     register(Double.TYPE, DOUBLE);
   }
+
+  public static final DataType IDENTIFIER = new FunctionDataType("identifier", Identifier.class,
+    Identifier::newIdentifier);
 
   public static DataType getDataType(final Class<?> clazz) {
     if (clazz == null) {

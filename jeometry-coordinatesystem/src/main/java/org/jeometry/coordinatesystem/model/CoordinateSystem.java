@@ -11,6 +11,7 @@ import javax.measure.Quantity;
 import javax.measure.Unit;
 import javax.measure.quantity.Length;
 
+import org.jeometry.common.data.identifier.Code;
 import org.jeometry.coordinatesystem.io.EpsgCsWktWriter;
 import org.jeometry.coordinatesystem.io.EsriCsWktWriter;
 import org.jeometry.coordinatesystem.model.systems.EsriCoordinateSystems;
@@ -18,7 +19,7 @@ import org.jeometry.coordinatesystem.model.unit.LinearUnit;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperation;
 import org.jeometry.coordinatesystem.util.Md5;
 
-public interface CoordinateSystem extends HorizontalCoordinateSystemProxy {
+public interface CoordinateSystem extends HorizontalCoordinateSystemProxy, Code {
 
   CoordinateSystem clone();
 
@@ -29,6 +30,13 @@ public interface CoordinateSystem extends HorizontalCoordinateSystemProxy {
   Authority getAuthority();
 
   List<Axis> getAxis();
+
+  @SuppressWarnings("unchecked")
+  @Override
+  default <C> C getCode() {
+    final Integer id = getCoordinateSystemId();
+    return (C)id;
+  }
 
   CoordinatesOperation getCoordinatesOperation(CoordinateSystem coordinateSystem);
 
@@ -41,10 +49,16 @@ public interface CoordinateSystem extends HorizontalCoordinateSystemProxy {
   CoordinateSystemType getCoordinateSystemType();
 
   @Override
+  default String getDescription() {
+    return getCoordinateSystemName();
+  }
+
+  @Override
   default <C extends CoordinateSystem> C getHorizontalCoordinateSystem() {
     return null;
   }
 
+  @Override
   default Integer getInteger(final int index) {
     if (index == 0) {
       return getCoordinateSystemId();
