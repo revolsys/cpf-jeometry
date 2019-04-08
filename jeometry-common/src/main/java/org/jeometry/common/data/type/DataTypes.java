@@ -116,6 +116,9 @@ public final class DataTypes {
 
   public static final DataType FLOAT = new FloatDataType();
 
+  public static final DataType IDENTIFIER = new FunctionDataType("identifier", Identifier.class,
+    Identifier::newIdentifier);
+
   public static final DataType INT = new IntegerDataType();
 
   public static final DataType LONG = new LongDataType();
@@ -235,9 +238,6 @@ public final class DataTypes {
     register(Float.TYPE, FLOAT);
     register(Double.TYPE, DOUBLE);
   }
-
-  public static final DataType IDENTIFIER = new FunctionDataType("identifier", Identifier.class,
-    Identifier::newIdentifier);
 
   public static DataType getDataType(final Class<?> clazz) {
     if (clazz == null) {
