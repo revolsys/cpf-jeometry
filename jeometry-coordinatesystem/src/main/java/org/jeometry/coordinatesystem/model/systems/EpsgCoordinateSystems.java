@@ -1,5 +1,6 @@
 package org.jeometry.coordinatesystem.model.systems;
 
+import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
@@ -1007,7 +1008,8 @@ public final class EpsgCoordinateSystems {
   private static DataInputStream newDataInputStream(final String fileName) {
     final InputStream in = EpsgCoordinateSystems.class
       .getResourceAsStream("/org/jeometry/coordinatesystem/epsg/" + fileName + ".bin");
-    return new DataInputStream(in);
+    final BufferedInputStream bufferedIn = new BufferedInputStream(in);
+    return new DataInputStream(bufferedIn);
   }
 
   private static boolean readBoolean(final DataInputStream reader) throws IOException {
