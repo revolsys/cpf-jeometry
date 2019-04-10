@@ -30,7 +30,7 @@ public class EsriCsGridParser {
 
   private static ProjectedCoordinateSystem getAlbers(
     final GeographicCoordinateSystem geographicCoordinateSystem,
-    final Map<String, Object> properties, final List<String> parameters) {
+    final Map<String, String> properties, final List<String> parameters) {
     ProjectedCoordinateSystem coordinateSystem;
 
     final Map<ParameterName, ParameterValue> parameterValues = new LinkedHashMap<>();
@@ -49,8 +49,8 @@ public class EsriCsGridParser {
   }
 
   private static GeographicCoordinateSystem getGeographicCoordinateSystem(
-    final Map<String, Object> properties, final List<String> projectionParameters) {
-    final String datum = properties.getOrDefault("datum", "").toString().toUpperCase();
+    final Map<String, String> properties, final List<String> projectionParameters) {
+    final String datum = properties.getOrDefault("datum", "").toUpperCase();
     int coordinateSystemId = -1;
     if ("NAD83".equals(datum)) {
       coordinateSystemId = EpsgId.NAD83;
@@ -65,7 +65,7 @@ public class EsriCsGridParser {
     } else if ("GDA94".equals(datum)) {
       coordinateSystemId = 4283;
     } else {
-      final String spheroid = properties.getOrDefault("spheroid", "").toString().toUpperCase();
+      final String spheroid = properties.getOrDefault("spheroid", "").toUpperCase();
       if ("INT1909".equals(spheroid) || "INTERNATIONAL1909".equals(spheroid)) {
         coordinateSystemId = 4230;
       } else if ("AIRY".equals(datum)) {
@@ -127,9 +127,9 @@ public class EsriCsGridParser {
 
   private static ProjectedCoordinateSystem getUtm(
     final GeographicCoordinateSystem geographicCoordinateSystem,
-    final Map<String, Object> properties, final List<String> parameters) {
-    final String datum = (String)properties.getOrDefault("datum", "");
-    int zone = ((Number)properties.getOrDefault("zone", -1)).intValue();
+    final Map<String, String> properties, final List<String> parameters) {
+    final String datum = properties.getOrDefault("datum", "");
+    int zone = Integer.parseInt(properties.getOrDefault("zone", "-1"));
     int coordinateSystemId = -1;
     ProjectedCoordinateSystem coordinateSystem = null;
     if (zone > 0 || zone < 61) {
@@ -141,7 +141,7 @@ public class EsriCsGridParser {
         coordinateSystemId = EpsgId.wgs84Utm(zone);
       } else {
         // Indicates North vs South
-        final double yShift = ((Number)properties.getOrDefault("yshift", 0.0)).doubleValue();
+        final double yShift = Double.parseDouble(properties.getOrDefault("yshift", "0"));
         final boolean north = yShift >= 0;
 
         coordinateSystem = getUtm(geographicCoordinateSystem, zone, north);
@@ -166,7 +166,7 @@ public class EsriCsGridParser {
   @SuppressWarnings("unchecked")
   public static <C extends HorizontalCoordinateSystem> C parse(final String projectionText) {
     final String[] lines = projectionText.split("[\\n\\r]+");
-    final Map<String, Object> properties = new LinkedHashMap<>();
+    final Map<String, String> properties = new LinkedHashMap<>();
     final List<String> projectionParameters = new ArrayList<>();
     boolean inParameters = false;
     for (String line : lines) {
@@ -184,7 +184,7 @@ public class EsriCsGridParser {
         }
       }
     }
-    final String projection = properties.getOrDefault("projection", "").toString();
+    final String projection = properties.getOrDefault("projection", "");
 
     HorizontalCoordinateSystem coordinateSystem = null;
     final GeographicCoordinateSystem geographicCoordinateSystem = getGeographicCoordinateSystem(
