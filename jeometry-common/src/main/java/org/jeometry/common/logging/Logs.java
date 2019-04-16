@@ -285,8 +285,8 @@ public class Logs {
   public static FileAppender newFileAppender(final File file, final String pattern) {
     final PatternLayout layout = newLayout(pattern);
     return FileAppender.newBuilder() //
-      .withLayout(layout)//
-      .withName("file")
+      .setLayout(layout)//
+      .setName("file")
       .withFileName(file.getAbsolutePath())
       .build();
   }
@@ -295,8 +295,8 @@ public class Logs {
     final boolean append) {
     final PatternLayout layout = newLayout(pattern);
     return FileAppender.newBuilder() //
-      .withLayout(layout)//
-      .withName("file")
+      .setLayout(layout)//
+      .setName("file")
       .withFileName(file.getAbsolutePath())
       .withAppend(append)
       .build();
@@ -305,8 +305,8 @@ public class Logs {
   public static FileAppender newFileAppender(final Path file, final String pattern) {
     final PatternLayout layout = newLayout(pattern);
     return FileAppender.newBuilder() //
-      .withLayout(layout)//
-      .withName("file")
+      .setLayout(layout)//
+      .setName("file")
       .withFileName(file.toString())
       .build();
   }
