@@ -14,7 +14,9 @@ import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -226,6 +228,16 @@ public final class DataTypes {
   public static final DataType UUID = new SimpleDataType("uuid", UUID.class);
 
   public static final DataType XML = new FunctionDataType("xml", String.class, Object::toString);
+
+  public static final DataType COLLECTION = new CollectionDataType("Collection", Collection.class,
+    OBJECT);
+
+  public static final DataType LIST = new ListDataType(List.class, OBJECT);
+
+  public static final DataType RELATION = new CollectionDataType("Relation", Collection.class,
+    OBJECT);
+
+  public static final DataType SET = new SetDataType(Set.class, OBJECT);
 
   static {
     registerDataTypes(DataTypes.class);
