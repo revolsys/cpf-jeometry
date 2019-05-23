@@ -157,6 +157,14 @@ public class LinearUnit implements UnitOfMeasure {
     return this.conversionFactor;
   }
 
+  public String getLabel() {
+    String unitLabel = this.unit.getSymbol();
+    if (unitLabel == null) {
+      unitLabel = this.unit.getName();
+    }
+    return unitLabel;
+  }
+
   public String getName() {
     return this.name;
   }

@@ -21,4 +21,6 @@ public interface HorizontalCoordinateSystem extends CoordinateSystem {
   default <C extends CoordinateSystem> C getHorizontalCoordinateSystem() {
     return (C)this;
   }
+
+  String getUnitLabel();
 }

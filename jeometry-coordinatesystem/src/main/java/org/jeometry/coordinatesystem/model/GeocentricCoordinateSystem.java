@@ -123,6 +123,11 @@ public class GeocentricCoordinateSystem extends AbstractHorizontalCoordinateSyst
   }
 
   @Override
+  public String getUnitLabel() {
+    return this.linearUnit.getName();
+  }
+
+  @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;

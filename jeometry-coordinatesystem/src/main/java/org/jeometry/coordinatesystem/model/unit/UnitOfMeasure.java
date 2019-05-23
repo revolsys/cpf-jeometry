@@ -3,8 +3,12 @@ package org.jeometry.coordinatesystem.model.unit;
 import java.util.Arrays;
 import java.util.List;
 
+import org.jeometry.coordinatesystem.model.Authority;
+
 public interface UnitOfMeasure {
   static List<String> TYPE_NAMES = Arrays.asList("scale", "length", "angle", "time");
+
+  Authority getAuthority();
 
   UnitOfMeasureType getType();
 

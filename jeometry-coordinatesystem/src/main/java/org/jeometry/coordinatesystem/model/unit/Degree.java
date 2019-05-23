@@ -44,6 +44,11 @@ public class Degree extends AngularUnit {
   }
 
   @Override
+  public String getLabel() {
+    return "°";
+  }
+
+  @Override
   public double toDegrees(final double value) {
     return value;
   }
