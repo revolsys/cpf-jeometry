@@ -101,6 +101,10 @@ public class CoordinatesOperationPoint {
     this.z = z;
   }
 
+  public void setM(final double m) {
+    this.m = m;
+  }
+
   public void setPoint(final double x, final double y) {
     this.x = x;
     this.y = y;
@@ -135,6 +139,18 @@ public class CoordinatesOperationPoint {
         this.m = coordinates[offset + 3];
       }
     }
+  }
+
+  public void setX(final double x) {
+    this.x = x;
+  }
+
+  public void setY(final double y) {
+    this.y = y;
+  }
+
+  public void setZ(final double z) {
+    this.z = z;
   }
 
   @Override
