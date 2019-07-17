@@ -68,6 +68,24 @@ public class Angle {
     return angle;
   }
 
+  /**
+   * Calculate the angle between three coordinates.
+   *
+   * @param x1 The first x coordinate.
+   * @param y1 The first y coordinate.
+   * @param x2 The second x coordinate.
+   * @param y2 The second y coordinate.
+   * @param x3 The third x coordinate.
+   * @param y3 The third y coordinate.
+   * @return The distance.
+   */
+  public static double angle(final double x1, final double y1, final double x2, final double y2,
+    final double x3, final double y3) {
+    final double angle1 = angle2d(x2, y2, x1, y1);
+    final double angle2 = angle2d(x2, y2, x3, y3);
+    return angleDiff(angle1, angle2);
+  }
+
   public static double angle2d(final double x1, final double y1, final double x2, final double y2) {
     final double dx = x2 - x1;
     final double dy = y2 - y1;
