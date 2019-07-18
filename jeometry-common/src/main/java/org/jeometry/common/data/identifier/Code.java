@@ -50,8 +50,12 @@ public interface Code extends Describable, Identifier {
   }
 
   default boolean equalsCode(final Object code) {
-    final Object codeThis = getCode();
-    return codeThis.equals(code);
+    if (code == this) {
+      return true;
+    } else {
+      final Object codeThis = getCode();
+      return codeThis.equals(code);
+    }
   }
 
   <C> C getCode();
