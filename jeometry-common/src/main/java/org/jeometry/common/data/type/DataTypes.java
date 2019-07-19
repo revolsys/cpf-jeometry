@@ -25,7 +25,6 @@ import java.util.UUID;
 import javax.xml.namespace.QName;
 
 import org.jeometry.common.awt.WebColors;
-import org.jeometry.common.data.identifier.Code;
 import org.jeometry.common.data.identifier.Identifier;
 import org.jeometry.common.date.Dates;
 import org.jeometry.common.exception.Exceptions;
@@ -102,15 +101,7 @@ public final class DataTypes {
 
   public static final DataType BYTE = new ByteDataType();
 
-  public static final DataType CODE = new FunctionDataType("code", Code.class, value -> value,
-    value -> {
-      final Code code = Code.getCode(value);
-      if (code == null) {
-        return value.toString();
-      } else {
-        return code.toIdString();
-      }
-    }, (a, b) -> ((Code)a).equalsCode(b));
+  public static final DataType CODE = new CodeDataType();
 
   public static final DataType COLOR = new FunctionDataType("color", Color.class,
     value -> WebColors.toColor(value), WebColors::toString);
