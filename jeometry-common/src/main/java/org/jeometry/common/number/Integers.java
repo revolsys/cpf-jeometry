@@ -5,6 +5,8 @@ import java.util.List;
 public class Integers {
   public static final int BYTES_IN_INT = 4;
 
+  public static final int[] EMPTY_ARRAY = new int[0];
+
   public static int add(final int left, final Number right) {
     return left + right.intValue();
   }

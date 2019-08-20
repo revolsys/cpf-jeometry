@@ -5,6 +5,8 @@ import java.io.Writer;
 import java.util.List;
 
 public class Doubles {
+  public static final double[] EMPTY_ARRAY = new double[0];
+
   private static final char[] DIGIT_ONES = {
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8',
     '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7',
