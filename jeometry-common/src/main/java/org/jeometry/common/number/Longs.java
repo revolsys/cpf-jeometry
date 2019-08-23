@@ -3,6 +3,8 @@ package org.jeometry.common.number;
 public class Longs {
   public static final int BYTES_IN_LONG = 8;
 
+  public static final long[] EMPTY_ARRAY = new long[0];
+
   public static long add(final long left, final Number right) {
     return left + right.longValue();
   }

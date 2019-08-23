@@ -1,6 +1,8 @@
 package org.jeometry.common.number;
 
 public class Bytes {
+  public static final byte[] EMPTY_ARRAY = new byte[0];
+
   public static byte add(final byte left, final Number right) {
     return (byte)(left + right.byteValue());
   }
