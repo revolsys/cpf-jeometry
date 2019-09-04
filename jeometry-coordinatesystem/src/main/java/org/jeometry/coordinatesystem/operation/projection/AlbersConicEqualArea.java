@@ -118,7 +118,8 @@ public class AlbersConicEqualArea extends AbstractCoordinatesProjection {
       .getDoubleParameter(NormalizedParameterNames.STANDARD_PARALLEL_1);
     final double secondStandardParallel = cs
       .getDoubleParameter(NormalizedParameterNames.STANDARD_PARALLEL_2);
-    final double centralMeridian = cs.getDoubleParameter(NormalizedParameterNames.CENTRAL_MERIDIAN);
+    final double centralMeridian = cs.getDoubleParameter(NormalizedParameterNames.CENTRAL_MERIDIAN,
+      0);
     final double latitudeOfProjection = cs
       .getDoubleParameter(NormalizedParameterNames.LATITUDE_OF_ORIGIN);
     this.ellipsoid = cs.getEllipsoid();

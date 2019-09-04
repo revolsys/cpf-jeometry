@@ -61,17 +61,21 @@ public class EsriCoordinateSystems {
 
   @SuppressWarnings("unchecked")
   public static <C extends CoordinateSystem> C getCoordinateSystem(final int crsId) {
-    CoordinateSystem coordinateSystem = COORDINATE_SYSTEM_BY_ID.get(crsId);
-    if (coordinateSystem == null) {
-      coordinateSystem = getGeographicCoordinateSystem(crsId);
+    if (crsId >= 2000000) {
+      return null;
+    } else {
+      CoordinateSystem coordinateSystem = COORDINATE_SYSTEM_BY_ID.get(crsId);
       if (coordinateSystem == null) {
-        coordinateSystem = getProjectedCoordinateSystem(crsId);
+        coordinateSystem = getGeographicCoordinateSystem(crsId);
         if (coordinateSystem == null) {
-          coordinateSystem = getVerticalCoordinateSystem(crsId);
+          coordinateSystem = getProjectedCoordinateSystem(crsId);
+          if (coordinateSystem == null) {
+            coordinateSystem = getVerticalCoordinateSystem(crsId);
+          }
         }
       }
+      return (C)coordinateSystem;
     }
-    return (C)coordinateSystem;
   }
 
   private static List<Integer> getCoordinateSystemIdsByDigest(
@@ -281,7 +285,9 @@ public class EsriCoordinateSystems {
         }
       } catch (final EOFException e) {
       } catch (final IOException e) {
-        log("ellipsoid", e);
+        if (!e.getMessage().contains("closed")) {
+          log("VerticalCoordinateSystem", e);
+        }
         return null;
       }
     }

@@ -218,6 +218,15 @@ public class ProjectedCoordinateSystem extends AbstractHorizontalCoordinateSyste
     }
   }
 
+  public double getDoubleParameter(final ParameterName key, final double defaultValue) {
+    final Number value = getParameter(key);
+    if (value == null) {
+      return defaultValue;
+    } else {
+      return value.doubleValue();
+    }
+  }
+
   @Override
   public GeodeticDatum getGeodeticDatum() {
     return this.geographicCoordinateSystem.getGeodeticDatum();
