@@ -97,7 +97,7 @@ public class Doubles {
         }
         final long intP = Long.parseLong(s.substring(0, dot));
         final long decP = Long.parseLong(decS);
-        format(string, intP, decP);
+        format(string, 19, intP, decP);
       } else {
         // Scientific representation of double: "x.xxxxxEyyy"
         final int dot = s.indexOf('.');
@@ -129,7 +129,7 @@ public class Doubles {
             final long intP = Long.parseLong(intS) * tenPow(exposant)
               + Long.parseLong(decS.substring(0, exposant));
             final long decP = Long.parseLong(decS.substring(exposant, exposant + 20));
-            format(string, intP, decP);
+            format(string, 19, intP, decP);
           }
         } else {
           // Only a decimal part is supplied
@@ -139,15 +139,15 @@ public class Doubles {
             string.append('0');
           } else if (digits == 0) {
             final long decP = Long.parseLong(intS);
-            format(string, 0L, decP);
+            format(string, 19, 0L, decP);
           } else if (decLength < digits) {
             final long decP = Long.parseLong(intS) * tenPow(decLength + 1)
               + Long.parseLong(decS) * 10;
-            format(string, 0L, decP);
+            format(string, exposant + decLength, 0L, decP);
           } else {
             final long subDecP = Long.parseLong(decS.substring(0, digits));
             final long decP = Long.parseLong(intS) * tenPow(digits) + subDecP;
-            format(string, 0L, decP);
+            format(string, 19, 0L, decP);
           }
         }
       }
@@ -191,8 +191,7 @@ public class Doubles {
     return equal((double)number1, (double)number2);
   }
 
-  private static void format(final StringBuilder target, long intP, long decP) {
-    int scale = 19;
+  private static void format(final StringBuilder target, int scale, long intP, long decP) {
     if (decP != 0L) {
       // decP is the decimal part of source, truncated to scale + 1 digit.
       // Custom rounding: add 5
