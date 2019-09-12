@@ -17,7 +17,5 @@ jobs:
         java-version: 11.0.x
     - name: Checkout Jeometry
       uses: actions/checkout@v1
-      with:
-        path: jeometry
     - name: Build Jeometry
-      run: mvn install --file jeometry/pom.xml
+      run: mvn install --file pom.xml
