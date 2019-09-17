@@ -10,7 +10,7 @@ public class BigDecimalDataType extends AbstractDataType {
 
   @Override
   protected boolean equalsNotNull(final Object value1, final Object value2) {
-    return equalsNotNull(value1, value2);
+    return super.equalsNotNull(value1, value2);
   }
 
   @Override
