@@ -49,6 +49,11 @@ public interface Code extends Describable, Identifier {
     return Collections.unmodifiableMap(code);
   }
 
+  @Override
+  default boolean equals(final Identifier identifier) {
+    return equals((Object)identifier);
+  }
+
   default boolean equalsCode(final Object code) {
     if (code == this) {
       return true;
@@ -59,6 +64,15 @@ public interface Code extends Describable, Identifier {
   }
 
   <C> C getCode();
+
+  @Override
+  default <V> V getValue(final int index) {
+    if (index == 0) {
+      return getCode();
+    } else {
+      return null;
+    }
+  }
 
   @Override
   default List<Object> getValues() {

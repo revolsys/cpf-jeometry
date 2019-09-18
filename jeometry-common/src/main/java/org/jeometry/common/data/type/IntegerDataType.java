@@ -6,6 +6,19 @@ public class IntegerDataType extends AbstractDataType {
     super("int", Integer.class, false);
   }
 
+  public boolean equals(final int value1, final Object value2) {
+    if (value2 == null) {
+      return false;
+    } else {
+      try {
+        final Integer int2 = toObjectDo(value2);
+        return value1 == int2;
+      } catch (final Exception e) {
+        return false;
+      }
+    }
+  }
+
   @Override
   protected boolean equalsNotNull(final Object value1, final Object value2) {
     return (int)value1 == (int)value2;
@@ -26,9 +39,9 @@ public class IntegerDataType extends AbstractDataType {
   }
 
   @Override
-  protected Object toObjectDo(final Object value) {
+  protected Integer toObjectDo(final Object value) {
     if (value instanceof Integer) {
-      return value;
+      return (Integer)value;
     } else if (value instanceof Number) {
       return ((Number)value).intValue();
     } else {

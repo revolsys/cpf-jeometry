@@ -34,15 +34,28 @@ public class SingleIdentifier implements Identifier, Comparable<Object> {
   public boolean equals(final Object other) {
     if (other instanceof Identifier) {
       final Identifier identifier = (Identifier)other;
-      final List<Object> values = identifier.getValues();
-      if (values.size() == 1) {
-        final Object otherValue = values.get(0);
-        return DataType.equal(this.value, otherValue);
-      } else {
-        return false;
-      }
+      return equals(identifier);
     } else {
       return DataType.equal(this.value, other);
+    }
+  }
+
+  public boolean equals(final Identifier identifier) {
+    if (identifier.isSingle()) {
+      final Object otherValue = identifier.getValue(0);
+      return DataType.equal(this.value, otherValue);
+    } else {
+      return false;
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public <V> V getValue(final int index) {
+    if (index == 0) {
+      return (V)this.value;
+    } else {
+      return null;
     }
   }
 
@@ -58,11 +71,6 @@ public class SingleIdentifier implements Identifier, Comparable<Object> {
     } else {
       return this.value.hashCode();
     }
-  }
-
-  @Override
-  public boolean isSingle() {
-    return true;
   }
 
   @Override

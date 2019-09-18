@@ -6,6 +6,19 @@ public class LongDataType extends AbstractDataType {
     super("long", Long.class, false);
   }
 
+  public boolean equals(final long value1, final Object value2) {
+    if (value2 == null) {
+      return false;
+    } else {
+      try {
+        final Long long2 = toObjectDo(value2);
+        return value1 == long2;
+      } catch (final Exception e) {
+        return false;
+      }
+    }
+  }
+
   @Override
   protected boolean equalsNotNull(final Object value1, final Object value2) {
     return (long)value1 == (long)value2;
@@ -26,13 +39,14 @@ public class LongDataType extends AbstractDataType {
   }
 
   @Override
-  protected Object toObjectDo(final Object value) {
+  protected Long toObjectDo(final Object value) {
     if (value instanceof Number) {
       final Number number = (Number)value;
       return number.longValue();
+    } else {
+      final String string = DataTypes.toString(value);
+      return Long.valueOf(string);
     }
-    final String string = DataTypes.toString(value);
-    return Long.valueOf(string);
   }
 
   @Override

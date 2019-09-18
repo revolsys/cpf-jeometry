@@ -123,9 +123,9 @@ public final class DataTypes {
   public static final DataType IDENTIFIER = new FunctionDataType("identifier", Identifier.class,
     Identifier::newIdentifier);
 
-  public static final DataType INT = new IntegerDataType();
+  public static final IntegerDataType INT = new IntegerDataType();
 
-  public static final DataType LONG = new LongDataType();
+  public static final LongDataType LONG = new LongDataType();
 
   @SuppressWarnings({
     "rawtypes", "unchecked"

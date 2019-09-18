@@ -3,10 +3,10 @@ package org.jeometry.common.data.identifier;
 import java.util.Collections;
 import java.util.List;
 
-import org.jeometry.common.data.type.DataType;
+import org.jeometry.common.data.type.DataTypes;
 import org.jeometry.common.number.Longs;
 
-public final class IntegerIdentifier extends Number implements Identifier, Comparable<Object> {
+public class IntegerIdentifier extends Number implements Identifier, Comparable<Object> {
   private static final long serialVersionUID = 1L;
 
   private final int value;
@@ -69,21 +69,25 @@ public final class IntegerIdentifier extends Number implements Identifier, Compa
   }
 
   @Override
+  public boolean equals(final Identifier identifier) {
+    if (identifier.isSingle()) {
+      final Object otherValue = identifier.getValue(0);
+      return DataTypes.INT.equals(this.value, otherValue);
+    } else {
+      return false;
+    }
+  }
+
+  @Override
   public boolean equals(final Object other) {
-    if (other instanceof Number) {
+    if (other instanceof Identifier) {
+      final Identifier identifier = (Identifier)other;
+      return equals(identifier);
+    } else if (other instanceof Number) {
       final Number number = (Number)other;
       return this.value == number.intValue();
-    } else if (other instanceof Identifier) {
-      final Identifier identifier = (Identifier)other;
-      final List<Object> values = identifier.getValues();
-      if (values.size() == 1) {
-        final Object otherValue = values.get(0);
-        return DataType.equal(this.value, otherValue);
-      } else {
-        return false;
-      }
     } else {
-      return DataType.equal(this.value, other);
+      return DataTypes.INT.equals(this.value, other);
     }
   }
 
@@ -115,11 +119,6 @@ public final class IntegerIdentifier extends Number implements Identifier, Compa
   @Override
   public int intValue() {
     return this.value;
-  }
-
-  @Override
-  public boolean isSingle() {
-    return true;
   }
 
   @Override

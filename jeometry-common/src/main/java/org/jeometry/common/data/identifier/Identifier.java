@@ -3,7 +3,6 @@ package org.jeometry.common.data.identifier;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -143,25 +142,22 @@ public interface Identifier {
     } else if (identifier2 == null) {
       return -1;
     } else {
-      final Iterator<Object> valueIter1 = getValues().iterator();
-      final Iterator<Object> valueIter2 = identifier2.getValues().iterator();
-      while (valueIter1.hasNext() && valueIter2.hasNext()) {
-        final Object value1 = valueIter1.next();
-        final Object value2 = valueIter2.next();
+      final int valueCount1 = getValueCount();
+      final int valueCount2 = identifier2.getValueCount();
+      final int valueCount = Math.min(valueCount1, valueCount2);
+      for (int i = 0; i < valueCount; i++) {
+        final Object value1 = getValue(i);
+        final Object value2 = identifier2.getValue(i);
         final int compare = CompareUtil.compare(value1, value2);
         if (compare != 0) {
           return compare;
         }
       }
-      if (valueIter1.hasNext()) {
-        return 1;
-      } else if (valueIter2.hasNext()) {
-        return -1;
-      } else {
-        return 0;
-      }
+      return Integer.compare(valueCount1, valueCount2);
     }
   }
+
+  boolean equals(Identifier identifier);
 
   default Integer getInteger(final int index) {
     final Object value = getValue(index);
@@ -196,28 +192,28 @@ public interface Identifier {
     }
   }
 
-  @SuppressWarnings("unchecked")
-  default <V> V getValue(final int index) {
-    return (V)getValues().get(index);
+  <V> V getValue(final int index);
+
+  default int getValueCount() {
+    return 1;
   }
 
   List<Object> getValues();
 
   default boolean isSingle() {
-    return getValues().size() == 1;
+    return true;
   }
 
   default void setIdentifier(final Map<String, Object> record, final List<String> fieldNames) {
-    final List<Object> values = getValues();
-    if (fieldNames.size() == values.size()) {
+    if (fieldNames.size() == getValueCount()) {
       for (int i = 0; i < fieldNames.size(); i++) {
         final String fieldName = fieldNames.get(i);
-        final Object value = values.get(i);
+        final Object value = getValue(i);
         record.put(fieldName, value);
       }
     } else {
       throw new IllegalArgumentException(
-        "Field names count for " + fieldNames + " != count for values " + values);
+        "Field names count for " + fieldNames + " != count for values " + this);
     }
   }
 
@@ -231,11 +227,11 @@ public interface Identifier {
 
   @SuppressWarnings("unchecked")
   default <V> V toSingleValue() {
-    final List<Object> values = getValues();
-    if (values.size() == 0) {
+    final int valueCount = getValueCount();
+    if (valueCount == 0) {
       return null;
-    } else if (values.size() == 1) {
-      return (V)values.get(0);
+    } else if (valueCount == 1) {
+      return (V)getValue(0);
     } else {
       throw new IllegalArgumentException(
         "Cannot create value for identifier with multiple parts " + this);

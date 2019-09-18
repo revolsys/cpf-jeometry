@@ -107,6 +107,17 @@ public class TypedIdentifier extends AbstractIdentifier implements Comparable<Ob
     }
   }
 
+  @Override
+  public boolean equals(final Identifier identifier) {
+    if (identifier instanceof TypedIdentifier) {
+      final TypedIdentifier typedIdentifier = (TypedIdentifier)identifier;
+      if (this.type.equals(typedIdentifier.type)) {
+        return identifier.equals(typedIdentifier.identifier);
+      }
+    }
+    return false;
+  }
+
   public boolean equalsType(final String type) {
     return this.type.equals(type);
   }
@@ -128,11 +139,15 @@ public class TypedIdentifier extends AbstractIdentifier implements Comparable<Ob
   @Override
   public <V> V getValue(final int index) {
     if (index == 0) {
-      final V type2 = (V)this.type;
-      return type2;
+      return (V)this.type;
     } else {
       return this.identifier.getValue(index - 1);
     }
+  }
+
+  @Override
+  public int getValueCount() {
+    return 1 + this.identifier.getValueCount();
   }
 
   @Override
@@ -141,6 +156,11 @@ public class TypedIdentifier extends AbstractIdentifier implements Comparable<Ob
     values.add(this.type);
     values.addAll(this.identifier.getValues());
     return Arrays.asList(this.type, this.identifier);
+  }
+
+  @Override
+  public boolean isSingle() {
+    return false;
   }
 
   @Override
