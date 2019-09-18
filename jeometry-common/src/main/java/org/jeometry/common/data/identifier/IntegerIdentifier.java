@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.jeometry.common.data.type.DataTypes;
+import org.jeometry.common.number.Integers;
 import org.jeometry.common.number.Longs;
 
 public class IntegerIdentifier extends Number implements Identifier, Comparable<Object> {
@@ -70,9 +71,9 @@ public class IntegerIdentifier extends Number implements Identifier, Comparable<
 
   @Override
   public boolean equals(final Identifier identifier) {
-    if (identifier.isSingle()) {
+    if (identifier != null && identifier.isSingle()) {
       final Object otherValue = identifier.getValue(0);
-      return DataTypes.INT.equals(this.value, otherValue);
+      return Integers.equals(this.value, otherValue);
     } else {
       return false;
     }
@@ -87,7 +88,7 @@ public class IntegerIdentifier extends Number implements Identifier, Comparable<
       final Number number = (Number)other;
       return this.value == number.intValue();
     } else {
-      return DataTypes.INT.equals(this.value, other);
+      return Integers.equals(this.value, other);
     }
   }
 

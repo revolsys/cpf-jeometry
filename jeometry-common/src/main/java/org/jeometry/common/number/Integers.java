@@ -15,6 +15,19 @@ public class Integers {
     return left / right.intValue();
   }
 
+  public static boolean equals(final int value1, final Object value2) {
+    if (value2 == null) {
+      return false;
+    } else {
+      try {
+        final Integer int2 = toValid(value2);
+        return value1 == int2;
+      } catch (final Exception e) {
+        return false;
+      }
+    }
+  }
+
   public static boolean isInteger(final Object value) {
     return toInteger(value) != null;
   }

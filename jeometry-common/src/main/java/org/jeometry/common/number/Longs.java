@@ -26,6 +26,19 @@ public class Longs {
     return left / right.longValue();
   }
 
+  public static boolean equals(final long value1, final Object value2) {
+    if (value2 == null) {
+      return false;
+    } else {
+      final Long long2 = toValid(value2);
+      if (long2 == null) {
+        return false;
+      } else {
+        return value1 == long2;
+      }
+    }
+  }
+
   public static long mod(final long left, final Number right) {
     return left % right.longValue();
   }

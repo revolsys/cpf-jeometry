@@ -109,7 +109,7 @@ public class TypedIdentifier extends AbstractIdentifier implements Comparable<Ob
 
   @Override
   public boolean equals(final Identifier identifier) {
-    if (identifier instanceof TypedIdentifier) {
+    if (identifier != null && identifier instanceof TypedIdentifier) {
       final TypedIdentifier typedIdentifier = (TypedIdentifier)identifier;
       if (this.type.equals(typedIdentifier.type)) {
         return identifier.equals(typedIdentifier.identifier);

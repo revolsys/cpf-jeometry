@@ -31,21 +31,22 @@ public class SingleIdentifier implements Identifier, Comparable<Object> {
   }
 
   @Override
+  public boolean equals(final Identifier identifier) {
+    if (identifier != null && identifier.isSingle()) {
+      final Object otherValue = identifier.getValue(0);
+      return DataType.equal(this.value, otherValue);
+    } else {
+      return false;
+    }
+  }
+
+  @Override
   public boolean equals(final Object other) {
     if (other instanceof Identifier) {
       final Identifier identifier = (Identifier)other;
       return equals(identifier);
     } else {
       return DataType.equal(this.value, other);
-    }
-  }
-
-  public boolean equals(final Identifier identifier) {
-    if (identifier.isSingle()) {
-      final Object otherValue = identifier.getValue(0);
-      return DataType.equal(this.value, otherValue);
-    } else {
-      return false;
     }
   }
 

@@ -70,9 +70,9 @@ public final class LongIdentifier extends Number implements Identifier, Comparab
 
   @Override
   public boolean equals(final Identifier identifier) {
-    if (identifier.isSingle()) {
+    if (identifier != null && identifier.isSingle()) {
       final Object otherValue = identifier.getValue(0);
-      return DataTypes.LONG.equals(this.value, otherValue);
+      return Longs.equals(this.value, otherValue);
     } else {
       return false;
     }
@@ -87,7 +87,7 @@ public final class LongIdentifier extends Number implements Identifier, Comparab
       final Number number = (Number)other;
       return this.value == number.longValue();
     } else {
-      return DataTypes.LONG.equals(this.value, other);
+      return Longs.equals(this.value, other);
     }
   }
 
