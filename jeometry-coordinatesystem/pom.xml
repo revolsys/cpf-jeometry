@@ -11,6 +11,19 @@
   <artifactId>jeometry-coordinatesystem</artifactId>
   <name>jeometry.org Coordinate Systems</name>
 
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>This license applies to the Java code and all files included in the repository</comments>
+    </license>
+    <license>
+      <url>http://www.epsg.org/TermsOfUse.aspx</url>
+      <comments>This license applies to the EPSG Coordinate Systems</comments>
+    </license>  
+  </licenses>
+
   <dependencies>
 
 <!-- Jeometry -->
