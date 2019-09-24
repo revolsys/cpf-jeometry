@@ -34,21 +34,6 @@ public class BigDecimals {
     }
   }
 
-  public static boolean isNumber(final Object value) {
-    if (value == null) {
-      return false;
-    } else if (value instanceof Number) {
-      return true;
-    } else {
-      try {
-        toValid(value);
-        return true;
-      } catch (final Throwable t) {
-        return false;
-      }
-    }
-  }
-
   public static String toString(final BigDecimal number) {
     return number.toPlainString();
   }

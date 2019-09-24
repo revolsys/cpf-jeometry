@@ -184,6 +184,39 @@ public interface Numbers {
     return toLong(part) != null;
   }
 
+  static boolean isNumber(final Object value) {
+    if (value == null) {
+      return false;
+    } else if (value instanceof Number) {
+      return true;
+    } else if (value instanceof String) {
+      final String string = (String)value;
+      boolean hasDecimal = false;
+      boolean hasDigit = false;
+      for (int i = 0; i < string.length(); i++) {
+        final char c = string.charAt(i);
+        if (c == '-') {
+          if (i > 0) {
+            return false;
+          }
+        } else if (c == '.') {
+          if (hasDecimal) {
+            return false;
+          } else {
+            hasDecimal = true;
+          }
+        } else if (Character.isDigit(c)) {
+          hasDigit = true;
+        } else {
+          return false;
+        }
+      }
+      return hasDigit;
+    } else {
+      return false;
+    }
+  }
+
   static boolean isOdd(final int number) {
     return number % 2 == 1;
   }
