@@ -3,7 +3,7 @@ package org.jeometry.common.io;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PathName implements Comparable<PathName>, CharSequence {
+public final class PathName implements Comparable<PathName>, CharSequence {
   public static final PathName ROOT = new PathName("/");
 
   private static String clean(final String path) {
@@ -126,17 +126,19 @@ public class PathName implements Comparable<PathName>, CharSequence {
       return false;
     } else if (object == this) {
       return true;
+    } else if (object instanceof PathName) {
+      return equals((PathName)object);
     } else {
-      final String upperPath = getUpperPath();
-      String upperPath2;
-      if (object instanceof PathName) {
-        final PathName path = (PathName)object;
-        upperPath2 = path.getUpperPath();
-      } else {
-        upperPath2 = object.toString().toUpperCase();
-      }
-      return upperPath.equals(upperPath2);
+      final String upperPath = object.toString().toUpperCase();
+      return this.upperPath.equals(upperPath);
     }
+  }
+
+  public boolean equals(final PathName pathName) {
+    if (pathName != null) {
+      return this.upperPath.equals(pathName.upperPath);
+    }
+    return false;
   }
 
   public boolean equalsPath(final String path) {
@@ -227,7 +229,7 @@ public class PathName implements Comparable<PathName>, CharSequence {
 
   @Override
   public int hashCode() {
-    return getUpperPath().hashCode();
+    return this.upperPath.hashCode();
   }
 
   /**
