@@ -186,6 +186,14 @@ public final class PathName implements Comparable<PathName>, CharSequence {
     return this.name;
   }
 
+  public PathName getNamePath() {
+    if (this.name.length() == 0) {
+      return null;
+    } else {
+      return new PathName("/" + this.name);
+    }
+  }
+
   public PathName getParent() {
     if (this.parent == null && this.path.length() > 1) {
       final String parentPath = getParentPath();
