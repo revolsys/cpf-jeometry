@@ -17,7 +17,8 @@ import org.jeometry.common.data.type.DataTypes;
 import org.jeometry.common.logging.Logs;
 
 public interface Dates {
-  String DATE_TIME_NANOS_PATTERN = "\\s*(\\d{4})-(\\d{2})-(\\d{2})(?:[\\sT]+(\\d{2})\\:(\\d{2})\\:(\\d{2})(?:\\.(\\d{1,9}))?)?\\s*";
+  Pattern DATE_TIME_NANOS_PATTERN = Pattern.compile(
+    "\\s*(\\d{4})-(\\d{2})-(\\d{2})(?:[\\sT]+(\\d{2})\\:(\\d{2})\\:(\\d{2})(?:\\.(\\d{1,9}))?)?\\s*");
 
   static long debugEllapsedTime(final Class<?> clazz, final String message, final long startTime) {
     final long endTime = System.currentTimeMillis();
@@ -70,8 +71,7 @@ public interface Dates {
 
   static Calendar getCalendar(final String dateString) {
     if (dateString != null) {
-      final Pattern pattern = Pattern.compile(DATE_TIME_NANOS_PATTERN);
-      final Matcher matcher = pattern.matcher(dateString);
+      final Matcher matcher = DATE_TIME_NANOS_PATTERN.matcher(dateString);
       if (matcher.find()) {
         final int year = getInteger(matcher, 1, 0);
         final int month = getInteger(matcher, 2, 0) - 1;
@@ -131,8 +131,7 @@ public interface Dates {
 
   static Date getDate(final String dateString) {
     if (dateString != null) {
-      final Pattern pattern = Pattern.compile(DATE_TIME_NANOS_PATTERN);
-      final Matcher matcher = pattern.matcher(dateString);
+      final Matcher matcher = DATE_TIME_NANOS_PATTERN.matcher(dateString);
       if (matcher.find()) {
         final int year = getInteger(matcher, 1, 0);
         final int month = getInteger(matcher, 2, 0) - 1;
@@ -290,8 +289,7 @@ public interface Dates {
 
   static java.sql.Date getSqlDate(final String dateString) {
     if (dateString != null) {
-      final Pattern pattern = Pattern.compile(DATE_TIME_NANOS_PATTERN);
-      final Matcher matcher = pattern.matcher(dateString);
+      final Matcher matcher = DATE_TIME_NANOS_PATTERN.matcher(dateString);
       if (matcher.find()) {
         final int year = getInteger(matcher, 1, 0);
         final int month = getInteger(matcher, 2, 0) - 1;
@@ -344,8 +342,7 @@ public interface Dates {
 
   static Timestamp getTimestamp(final String dateString) {
     if (dateString != null) {
-      final Pattern pattern = Pattern.compile(DATE_TIME_NANOS_PATTERN);
-      final Matcher matcher = pattern.matcher(dateString);
+      final Matcher matcher = DATE_TIME_NANOS_PATTERN.matcher(dateString);
       if (matcher.find()) {
         final int year = getInteger(matcher, 1, 0);
         final int month = getInteger(matcher, 2, 0) - 1;
