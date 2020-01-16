@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.UUID;
 
 import javax.xml.namespace.QName;
@@ -128,7 +127,7 @@ public final class DataTypes {
   public static final LongDataType LONG = new LongDataType();
 
   @SuppressWarnings({
-    "rawtypes", "unchecked"
+    "rawtypes",
   })
   public static final DataType MAP = new FunctionDataType("Map", Map.class, value -> {
     if (value instanceof Map) {
@@ -136,38 +135,7 @@ public final class DataTypes {
     } else {
       return value;
     }
-  }, (object1, object2) -> {
-    final Map<Object, Object> map1 = (Map<Object, Object>)object1;
-    final Map<Object, Object> map2 = (Map<Object, Object>)object2;
-    final Set<Object> keys = new TreeSet<>();
-    keys.addAll(map1.keySet());
-    keys.addAll(map2.keySet());
-
-    for (final Object key : keys) {
-      final Object value1 = map1.get(key);
-      final Object value2 = map2.get(key);
-      if (!DataType.equal(value1, value2)) {
-        return false;
-      }
-    }
-    return true;
-  }, (object1, object2, exclude) -> {
-    final Map<Object, Object> map1 = (Map<Object, Object>)object1;
-    final Map<Object, Object> map2 = (Map<Object, Object>)object2;
-    final Set<Object> keys = new TreeSet<>();
-    keys.addAll(map1.keySet());
-    keys.addAll(map2.keySet());
-    keys.removeAll(exclude);
-
-    for (final Object key : keys) {
-      final Object value1 = map1.get(key);
-      final Object value2 = map2.get(key);
-      if (!DataType.equal(value1, value2, exclude)) {
-        return false;
-      }
-    }
-    return true;
-  });
+  }, FunctionDataType.MAP_EQUALS, FunctionDataType.MAP_EQUALS_EXCLUDES);
 
   public static final DataType OBJECT = new ObjectDataType();
 

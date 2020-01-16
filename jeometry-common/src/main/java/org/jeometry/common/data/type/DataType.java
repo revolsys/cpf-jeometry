@@ -69,6 +69,8 @@ public interface DataType {
     }
   }
 
+  boolean isAssignableFrom(Class<?> valueClass);
+
   default boolean isInstance(final Object value) {
     final Class<?> javaClass = getJavaClass();
     return javaClass.isInstance(value);

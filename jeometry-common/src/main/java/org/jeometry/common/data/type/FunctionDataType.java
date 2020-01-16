@@ -2,12 +2,55 @@ package org.jeometry.common.data.type;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import org.jeometry.common.function.Function3;
 
 public class FunctionDataType extends AbstractDataType {
+
+  @SuppressWarnings("unchecked")
+  public static BiFunction<? extends Object, ? extends Object, Boolean> MAP_EQUALS = (object1,
+    object2) -> {
+    final Map<Object, Object> map1 = (Map<Object, Object>)object1;
+    final Map<Object, Object> map2 = (Map<Object, Object>)object2;
+    final Set<Object> keys = new TreeSet<>();
+    keys.addAll(map1.keySet());
+    keys.addAll(map2.keySet());
+
+    for (final Object key : keys) {
+      final Object value1 = map1.get(key);
+      final Object value2 = map2.get(key);
+      if (!DataType.equal(value1, value2)) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  @SuppressWarnings("unchecked")
+  public static final Function3<Object, Object, Collection<? extends CharSequence>, Boolean> MAP_EQUALS_EXCLUDES = (
+    object1, object2, exclude) -> {
+    final Map<Object, Object> map1 = (Map<Object, Object>)object1;
+    final Map<Object, Object> map2 = (Map<Object, Object>)object2;
+    final Set<Object> keys = new TreeSet<>();
+    keys.addAll(map1.keySet());
+    keys.addAll(map2.keySet());
+    keys.removeAll(exclude);
+
+    for (final Object key : keys) {
+      final Object value1 = map1.get(key);
+      final Object value2 = map2.get(key);
+      if (!DataType.equal(value1, value2, exclude)) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   public static FunctionDataType newToObjectEquals(final String name, final Class<?> javaClass,
     final Function<Object, ?> toObjectFunction,
     final BiFunction<? extends Object, ? extends Object, Boolean> equalsFunction) {

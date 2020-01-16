@@ -93,6 +93,11 @@ public abstract class AbstractDataType implements DataType {
   }
 
   @Override
+  public boolean isAssignableFrom(final Class<?> valueClass) {
+    return this.javaClass.isAssignableFrom(valueClass);
+  }
+
+  @Override
   public boolean isRequiresQuotes() {
     return this.requiresQuotes;
   }
