@@ -11,7 +11,11 @@ public class ListDataType extends SimpleDataType {
   private final DataType contentType;
 
   public ListDataType(final Class<?> javaClass, final DataType contentType) {
-    super("List", javaClass);
+    this("List", javaClass, contentType);
+  }
+
+  public ListDataType(final String name, final Class<?> javaClass, final DataType contentType) {
+    super(name, javaClass);
     this.contentType = contentType;
   }
 
