@@ -30,6 +30,7 @@
     <rule groupId="javax.measure" comparisonMethod="maven">
       <ignoreVersions>
         <ignoreVersion type="regex">.*-EDR</ignoreVersion>
+        <ignoreVersion type="regex">.*-PRD</ignoreVersion>
       </ignoreVersions>
     </rule>
   </rules>
