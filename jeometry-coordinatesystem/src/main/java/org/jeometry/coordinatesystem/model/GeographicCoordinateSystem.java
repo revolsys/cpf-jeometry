@@ -18,7 +18,7 @@ import org.jeometry.coordinatesystem.model.unit.Radian;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperation;
 import org.jeometry.coordinatesystem.operation.gridshift.HorizontalShiftOperation;
 
-import tec.uom.se.unit.Units;
+import tech.units.indriya.unit.Units;
 
 public class GeographicCoordinateSystem extends AbstractHorizontalCoordinateSystem {
   private static PrimeMeridian getPrimeMeridian(final GeodeticDatum datum) {

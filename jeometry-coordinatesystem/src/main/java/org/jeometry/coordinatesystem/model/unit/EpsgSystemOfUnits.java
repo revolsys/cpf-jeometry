@@ -4,7 +4,7 @@ import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 
-import tec.uom.se.AbstractSystemOfUnits;
+import tech.units.indriya.AbstractSystemOfUnits;
 
 public class EpsgSystemOfUnits extends AbstractSystemOfUnits {
   public EpsgSystemOfUnits() {

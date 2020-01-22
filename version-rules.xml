@@ -33,5 +33,11 @@
         <ignoreVersion type="regex">.*-PRD</ignoreVersion>
       </ignoreVersions>
     </rule>
+    <rule groupId="tech.uom.lib" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.*-EDR</ignoreVersion>
+        <ignoreVersion type="regex">.*-PRD</ignoreVersion>
+      </ignoreVersions>
+    </rule>    
   </rules>
 </ruleset>

@@ -1,7 +1,5 @@
 package org.jeometry.coordinatesystem.model.unit;
 
-import static tec.uom.se.AbstractUnit.ONE;
-
 import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.List;
@@ -15,29 +13,34 @@ import org.jeometry.coordinatesystem.operation.CoordinatesOperation;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
 import org.jeometry.coordinatesystem.util.Md5;
 
-import si.uom.NonSI;
-import tec.uom.se.unit.AlternateUnit;
-import tec.uom.se.unit.Units;
+import tech.units.indriya.AbstractUnit;
+import tech.units.indriya.function.MultiplyConverter;
+import tech.units.indriya.unit.AlternateUnit;
+import tech.units.indriya.unit.TransformedUnit;
+import tech.units.indriya.unit.Units;
 
 public class AngularUnit implements UnitOfMeasure {
 
   private static final Map<String, Unit<Angle>> UNIT_BY_NAME = new HashMap<>();
 
+  public static final Unit<Angle> DEGREE_ANGLE = new TransformedUnit<>("°", Units.RADIAN,
+    MultiplyConverter.ofPiExponent(1).concatenate(MultiplyConverter.ofRational(1, 180)));
+
   static {
     UNIT_BY_NAME.put("radian", Units.RADIAN);
-    UNIT_BY_NAME.put("degree", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("degree minute", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("degree minute second", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("degree minute second hemisphere", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("degree hemisphere", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("degree minute hemisphere", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("degree (supplier to define representation);", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("hemisphere degree", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("hemisphere degree minute", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("hemisphere degree minute second", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("sexagesimal dms.s", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("sexagesimal dms", NonSI.DEGREE_ANGLE);
-    UNIT_BY_NAME.put("sexagesimal dm", NonSI.DEGREE_ANGLE);
+    UNIT_BY_NAME.put("degree", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("degree minute", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("degree minute second", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("degree minute second hemisphere", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("degree hemisphere", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("degree minute hemisphere", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("degree (supplier to define representation);", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("hemisphere degree", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("hemisphere degree minute", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("hemisphere degree minute second", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("sexagesimal dms.s", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("sexagesimal dms", DEGREE_ANGLE);
+    UNIT_BY_NAME.put("sexagesimal dm", DEGREE_ANGLE);
     UNIT_BY_NAME.put("grad", CustomUnits.GRAD);
   }
 
@@ -69,7 +72,7 @@ public class AngularUnit implements UnitOfMeasure {
     if (this.unit == null) {
       if (baseUnit == null) {
         if (conversionFactor == 1) {
-          this.unit = new AlternateUnit<>(ONE, name);
+          this.unit = new AlternateUnit<>(AbstractUnit.ONE, name);
         } else {
           System.err.println("Invalid conversion factor for " + name);
         }
@@ -168,6 +171,7 @@ public class AngularUnit implements UnitOfMeasure {
     }
   }
 
+  @Override
   public Authority getAuthority() {
     return this.authority;
   }

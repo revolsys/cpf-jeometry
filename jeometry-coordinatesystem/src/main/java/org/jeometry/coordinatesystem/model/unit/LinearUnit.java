@@ -1,7 +1,5 @@
 package org.jeometry.coordinatesystem.model.unit;
 
-import static tec.uom.se.AbstractUnit.ONE;
-
 import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.List;
@@ -15,9 +13,9 @@ import org.jeometry.coordinatesystem.operation.CoordinatesOperation;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
 import org.jeometry.coordinatesystem.util.Md5;
 
-import systems.uom.common.USCustomary;
-import tec.uom.se.unit.AlternateUnit;
-import tec.uom.se.unit.Units;
+import tech.units.indriya.AbstractUnit;
+import tech.units.indriya.unit.AlternateUnit;
+import tech.units.indriya.unit.Units;
 
 public class LinearUnit implements UnitOfMeasure {
 
@@ -29,11 +27,11 @@ public class LinearUnit implements UnitOfMeasure {
     UNIT_BY_NAME.put("millimetre", CustomUnits.MILLIMETRE);
     UNIT_BY_NAME.put("centimetre", CustomUnits.CENTIMETRE);
     UNIT_BY_NAME.put("kilometre", CustomUnits.KILOMETRE);
-    UNIT_BY_NAME.put("foot", USCustomary.FOOT);
-    UNIT_BY_NAME.put("foot", USCustomary.FOOT);
-    UNIT_BY_NAME.put("yard", USCustomary.YARD);
-    UNIT_BY_NAME.put("us survey foot", USCustomary.FOOT_SURVEY);
-    UNIT_BY_NAME.put("foot_us", USCustomary.FOOT_SURVEY);
+    UNIT_BY_NAME.put("inch", CustomUnits.INCH);
+    UNIT_BY_NAME.put("foot", CustomUnits.FOOT);
+    UNIT_BY_NAME.put("yard", CustomUnits.YARD);
+    UNIT_BY_NAME.put("us survey foot", CustomUnits.FOOT_SURVEY);
+    UNIT_BY_NAME.put("foot_us", CustomUnits.FOOT_SURVEY);
     UNIT_BY_NAME.put("link_clarke", CustomUnits.CLARKES_LINK);
     UNIT_BY_NAME.put("foot_clarke", CustomUnits.CLARKES_FOOT);
     UNIT_BY_NAME.put("chain_clarke", CustomUnits.CLARKES_CHAIN);
@@ -86,7 +84,7 @@ public class LinearUnit implements UnitOfMeasure {
     if (this.unit == null) {
       if (baseUnit == null) {
         if (conversionFactor == 1) {
-          this.unit = new AlternateUnit<>(ONE, name);
+          this.unit = new AlternateUnit<>(AbstractUnit.ONE, name);
         } else {
           System.err.println("Invalid conversion factor for " + name);
         }
@@ -145,6 +143,7 @@ public class LinearUnit implements UnitOfMeasure {
     }
   }
 
+  @Override
   public Authority getAuthority() {
     return this.authority;
   }
