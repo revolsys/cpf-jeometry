@@ -147,6 +147,12 @@ public final class EpsgCoordinateSystems {
     }
   }
 
+  public static void addCoordinateSystemAlias(final int id, final int targetId) {
+    final ProjectedCoordinateSystem worldMercator = (ProjectedCoordinateSystem)COORDINATE_SYSTEM_BY_ID
+      .get(targetId);
+    COORDINATE_SYSTEM_BY_ID.put(id, worldMercator);
+  }
+
   public static synchronized void clear() {
     initialized = false;
     coordinateSystems = null;
@@ -456,9 +462,8 @@ public final class EpsgCoordinateSystems {
         loadCoordinateSystem();
         loadCoordinateReferenceSystem(axisMap);
 
-        final ProjectedCoordinateSystem worldMercator = (ProjectedCoordinateSystem)COORDINATE_SYSTEM_BY_ID
-          .get(3857);
-        COORDINATE_SYSTEM_BY_ID.put(900913, worldMercator);
+        addCoordinateSystemAlias(42102, 3005);
+        addCoordinateSystemAlias(900913, 3857);
         coordinateSystems = Collections
           .unmodifiableSet(new LinkedHashSet<>(COORDINATE_SYSTEM_BY_ID.values()));
       } catch (final Throwable t) {
