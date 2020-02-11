@@ -152,7 +152,7 @@ public final class DataTypes {
     value -> Dates.getSqlDate(value), Dates::toSqlDateString, Dates::equalsNotNull);
 
   public static final DataType STRING = new FunctionDataType("string", String.class,
-    Object::toString);
+    DataTypes::toString);
 
   public static final DataType TIME = new SimpleDataType("time", Time.class);
 

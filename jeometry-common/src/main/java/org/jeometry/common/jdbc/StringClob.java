@@ -88,6 +88,11 @@ public class StringClob implements Clob {
   }
 
   @Override
+  public String toString() {
+    return this.string;
+  }
+
+  @Override
   public void truncate(final long pos) throws SQLException {
     throw new UnsupportedOperationException("Cannot modify Clob");
   }
