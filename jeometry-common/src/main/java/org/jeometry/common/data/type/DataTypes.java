@@ -100,6 +100,8 @@ public final class DataTypes {
 
   public static final DataType BYTE = new ByteDataType();
 
+  public static final ClobDataType CLOB = new ClobDataType();
+
   public static final DataType CODE = new CodeDataType();
 
   public static final DataType COLOR = new FunctionDataType("color", Color.class,
