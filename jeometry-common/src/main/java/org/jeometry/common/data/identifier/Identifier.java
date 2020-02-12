@@ -127,9 +127,8 @@ public interface Identifier {
   static void setIdentifier(final Map<String, Object> record, final List<String> idFieldNames,
     final Identifier identifier) {
     if (identifier == null) {
-      for (int i = 0; i < idFieldNames.size(); i++) {
-        final String fieldName = idFieldNames.get(0);
-        record.put(fieldName, null);
+      for (final String idFieldName : idFieldNames) {
+        record.put(idFieldName, null);
       }
     } else {
       identifier.setIdentifier(record, idFieldNames);

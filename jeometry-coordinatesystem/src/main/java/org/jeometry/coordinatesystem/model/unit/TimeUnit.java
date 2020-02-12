@@ -43,6 +43,7 @@ public class TimeUnit implements UnitOfMeasure {
     }
   }
 
+  @Override
   public Authority getAuthority() {
     return this.authority;
   }

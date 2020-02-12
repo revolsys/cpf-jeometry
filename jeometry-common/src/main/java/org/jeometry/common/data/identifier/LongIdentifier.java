@@ -3,7 +3,6 @@ package org.jeometry.common.data.identifier;
 import java.util.Collections;
 import java.util.List;
 
-import org.jeometry.common.data.type.DataTypes;
 import org.jeometry.common.number.Longs;
 
 public final class LongIdentifier extends Number implements Identifier, Comparable<Object> {

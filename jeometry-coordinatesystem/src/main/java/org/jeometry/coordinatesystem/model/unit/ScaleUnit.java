@@ -43,6 +43,7 @@ public class ScaleUnit implements UnitOfMeasure {
     }
   }
 
+  @Override
   public Authority getAuthority() {
     return this.authority;
   }
