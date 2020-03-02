@@ -32,8 +32,8 @@ public interface Identifier {
   /**
    * Check that the two identifiers are equal. If either are null then false will be returned.
    *
-   * @param identifier1
-   * @param identifier2
+   * @param identifier1 The 1st identifier.
+   * @param identifier2 The 2nd identifier.
    * @return True if the identifiers are not null and are equal. False otherwise.
    */
   static boolean equals(final Identifier identifier1, final Identifier identifier2) {

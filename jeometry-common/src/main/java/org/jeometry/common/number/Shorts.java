@@ -71,6 +71,9 @@ public class Shorts {
   /**
    * Convert the value to a Short. If the value cannot be converted to a number
    * an exception is thrown
+   *
+   * @param value The value to convert.
+   * @return the converted value.
    */
   public static Short toValid(final Object value) {
     if (value == null) {
@@ -86,6 +89,9 @@ public class Shorts {
 
   /**
    * Convert the value to a Short. If the value cannot be converted to a number and exception is thrown.
+   *
+   * @param string The value to convert.
+   * @return the converted value.
    */
   public static Short toValid(final String string) {
     if (string == null) {

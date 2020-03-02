@@ -40,6 +40,9 @@ public class Bytes {
   /**
    * Convert the value to a Byte. If the value cannot be converted to a number
    * an exception is thrown
+   *
+   * @param value The value to convert.
+   * @return the converted value.
    */
   public static Byte toValid(final Object value) {
     if (value == null) {
@@ -55,6 +58,9 @@ public class Bytes {
 
   /**
    * Convert the value to a Byte. If the value cannot be converted to a number and exception is thrown.
+   *
+   * @param string The value to convert.
+   * @return the converted value.
    */
   public static Byte toValid(final String string) {
     if (string == null) {

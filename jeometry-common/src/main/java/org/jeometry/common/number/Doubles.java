@@ -159,7 +159,7 @@ public class Doubles {
   }
 
   /**
-   * Clamps a <tt>double</tt> value to a given range.
+   * Clamps a double value to a given range.
    * @param x the value to clamp
    * @param min the minimum value of the range
    * @param max the maximum value of the range
@@ -229,9 +229,8 @@ public class Doubles {
     return (int)(f ^ f >>> 32);
   }
 
-  /** sqrt(a^2 + b^2) without under/overflow. **/
-
   public static double hypot(final double a, final double b) {
+    // sqrt(a^2 + b^2) without under/overflow.
     double r;
     if (Math.abs(a) > Math.abs(b)) {
       r = b / a;
@@ -441,6 +440,9 @@ public class Doubles {
   /**
    * Convert the value to a Double. If the value cannot be converted to a number
    * an exception is thrown
+   *
+   * @param value The value to convert.
+   * @return the converted value.
    */
   public static Double toValid(final Object value) {
     if (value == null) {
@@ -456,6 +458,9 @@ public class Doubles {
 
   /**
    * Convert the value to a Double. If the value cannot be converted to a number and exception is thrown.
+   *
+   * @param string The value to convert.
+   * @return the converted value.
    */
   public static Double toValid(final String string) {
     if (string == null || string.length() == 0) {
@@ -552,6 +557,7 @@ public class Doubles {
    * @param scale the expected rounding scale
    * @param intP the source integer part
    * @param decP the source decimal part, truncated to scale + 1 digit
+   * @throws IOException if the value couldn't be written.
    */
   public static void write(final Writer writer, int scale, long intP, long decP)
     throws IOException {
