@@ -146,6 +146,9 @@ public class Integers {
   /**
    * Convert the value to a Integer. If the value cannot be converted to a number
    * null is returned instead of an exception.
+   *
+   * @param value The value to convert.
+   * @return the converted value.
    */
   public static Integer toInteger(final Object value) {
     try {
@@ -158,10 +161,13 @@ public class Integers {
   /**
    * Convert the value to a Integer. If the value cannot be converted to a number
    * null is returned instead of an exception.
+   *
+   * @param string The value to convert.
+   * @return the converted value.
    */
-  public static Integer toInteger(final String value) {
+  public static Integer toInteger(final String string) {
     try {
-      return toValid(value);
+      return toValid(string);
     } catch (final Throwable e) {
       return null;
     }
@@ -174,6 +180,9 @@ public class Integers {
   /**
    * Convert the value to a Integer. If the value cannot be converted to a number
    * an exception is thrown
+   *
+   * @param value The value to convert.
+   * @return the converted value.
    */
   public static Integer toValid(final Object value) {
     if (value == null) {
@@ -189,6 +198,9 @@ public class Integers {
 
   /**
    * Convert the value to a Long. If the value cannot be converted to a number and exception is thrown.
+   *
+   * @param string The value to convert.
+   * @return the converted value.
    */
   public static Integer toValid(final String string) {
     if (string == null) {

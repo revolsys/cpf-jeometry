@@ -89,6 +89,9 @@ public class Floats {
   /**
    * Convert the value to a Float. If the value cannot be converted to a number
    * an exception is thrown
+   *
+   * @param value The value to convert.
+   * @return the converted value.
    */
   public static Float toValid(final Object value) {
     if (value == null) {
@@ -104,6 +107,9 @@ public class Floats {
 
   /**
    * Convert the value to a Float. If the value cannot be converted to a number and exception is thrown.
+   *
+   * @param string The value to convert.
+   * @return the converted value.
    */
   public static Float toValid(final String string) {
     if (string == null || string.length() == 0) {

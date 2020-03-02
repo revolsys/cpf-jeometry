@@ -7,9 +7,7 @@ import org.jeometry.coordinatesystem.model.ProjectedCoordinateSystem;
 import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
 
 /**
- * <h1>Albers Equal Area</h1>
- * <p>
- * (EPSG dataset coordinate operation method code 9822)
+ * <p> * (EPSG dataset coordinate operation method code 9822)
  * </p>
  * <p>
  * To derive the projected coordinates of a point, geodetic latitude (φ) is
@@ -65,8 +63,6 @@ import org.jeometry.coordinatesystem.operation.CoordinatesOperationPoint;
  * <p>
  * and C, n and ρO are as in the forward equations.
  * </p>
- *
- * @author paustin
  */
 public class AlbersConicEqualArea extends AbstractCoordinatesProjection {
 

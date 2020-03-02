@@ -354,6 +354,9 @@ public interface Numbers {
   /**
    * Convert the value to a Long. If the value cannot be converted to a number
    * null is returned instead of an exception.
+   *
+   * @param value The value to convert.
+   * @return the converted value.
    */
   static Byte toByte(final Object value) {
     if (value == null) {
@@ -370,6 +373,9 @@ public interface Numbers {
   /**
    * Convert the value to a Long. If the value cannot be converted to a number
    * null is returned instead of an exception.
+   *
+   * @param string The value to convert.
+   * @return the converted value.
    */
   static Byte toByte(final String string) {
     if (string == null) {
@@ -463,6 +469,9 @@ public interface Numbers {
   /**
    * Convert the value to a Long. If the value cannot be converted to a number
    * null is returned instead of an exception.
+   *
+   * @param value The value to convert.
+   * @return the converted value.
    */
   static Long toLong(final Object value) {
     if (value == null) {
@@ -479,6 +488,9 @@ public interface Numbers {
   /**
    * Convert the value to a Long. If the value cannot be converted to a number
    * null is returned instead of an exception.
+   *
+   * @param string The value to convert.
+   * @return the converted value.
    */
   static Long toLong(final String string) {
     if (string == null) {
@@ -546,6 +558,9 @@ public interface Numbers {
   /**
    * Convert the value to a Long. If the value cannot be converted to a number
    * null is returned instead of an exception.
+   *
+   * @param value The value to convert.
+   * @return the converted value.
    */
   static Short toShort(final Object value) {
     if (value == null) {
@@ -562,6 +577,9 @@ public interface Numbers {
   /**
    * Convert the value to a Long. If the value cannot be converted to a number
    * null is returned instead of an exception.
+   *
+   * @param string The value to convert.
+   * @return the converted value.
    */
   static Short toShort(final String string) {
     if (string == null) {
