@@ -87,10 +87,7 @@ public class Angle {
   }
 
   public static double angle2d(final double x1, final double y1, final double x2, final double y2) {
-    final double dx = x2 - x1;
-    final double dy = y2 - y1;
-    final double angle = Math.atan2(dy, dx);
-    return angle;
+    return Math.atan2(y2 - y1, x2 - x1);
   }
 
   public static double angle2dClockwise(final double x1, final double y1, final double x2,
