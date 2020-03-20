@@ -391,12 +391,12 @@
     <repository>
       <id>github-maven-project</id>
       <name>Github Releases</name>
-      <url>${gitHubMavenUrl}</url>
+      <url>https://maven.pkg.github.com/jeometry-org/jeometry</url>
       <releases>
         <enabled>true</enabled>
       </releases>
       <snapshots>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
       </snapshots>
     </repository>
   </repositories>
