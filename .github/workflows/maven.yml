@@ -17,7 +17,7 @@ jobs:
       with:
         java-version: 11.0.x
 
-#### Checkout JEOMETRY ####
+#### Checkout jeometry ####
     - name: Checkout jeometry
       uses: actions/checkout@v2
       with:
@@ -33,6 +33,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-#### Build JEOMETRY ####
-    - name: Build Jeometry
-      run: mvn install --file jeometry/pom.xml
+#### Build jeometry ####
+    - name: Build jeometry
+      run: mvn deploy -DgitHubToken=${{secrets.GITHUB_TOKEN}}
+      working-directory: ./jeometry

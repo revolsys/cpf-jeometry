@@ -38,8 +38,6 @@
     <url>http://www.revolsys.com/</url>
   </organization>
 
-
-
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/jeometry-org/jeometry/issues</url>
@@ -210,6 +208,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
         <version>3.0.0-M1</version>
+        <configuration>
+        <deployAtEnd>true</deployAtEnd>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -326,7 +327,7 @@
           <additionalparam>-Xdoclint:none</additionalparam>
           <sourceFileExcludes>module-info.java</sourceFileExcludes>
           <failOnError>false</failOnError>
-          <failOnWarnings>false</failOnWarnings>          
+          <failOnWarnings>false</failOnWarnings>
         </configuration>
         <reportSets>
           <reportSet>
@@ -380,16 +381,25 @@
 
   <distributionManagement>
     <repository>
-      <id>revolsys-releases</id>
-      <name>revolsys-releases</name>
-      <url>https://open.revolsys.com/artifactory/libs-release</url>
+      <id>github-maven-project</id>
+      <name>Github Releases</name>
+      <url>${gitHubMavenUrl}</url>
     </repository>
-    <snapshotRepository>
-      <id>revolsys-snapshots</id>
-      <name>revolsys-snapshots</name>
-      <url>https://open.revolsys.com/artifactory/libs-snapshot</url>
-    </snapshotRepository>
   </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>github-maven-project</id>
+      <name>Github Releases</name>
+      <url>${gitHubMavenUrl}</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -399,8 +409,10 @@
     <github.global.server>github</github.global.server>
     <gitHubUser>jeometry-org</gitHubUser>
     <gitHubProject>jeometry</gitHubProject>
+    <gitHubRepository>${gitHubUser}/${gitHubProject}</gitHubRepository>
+    <gitHubToken>PERSONAL ACCESS TOKEN WITH PACKAGE DEPLOY PERMISSION</gitHubToken>
+    <gitHubMavenUrl>https://token:${gitHubToken}@maven.pkg.github.com/${gitHubRepository}</gitHubMavenUrl>
     <siteUrl>http://${gitHubUser}.github.io/${gitHubProject}/</siteUrl>
-    <gitHubUrl>https://github.com/${gitHubUser}/${gitHubProject}/</gitHubUrl>
     <skipTests>true</skipTests>
   </properties>
 </project>
