@@ -383,7 +383,7 @@
     <repository>
       <id>github-maven-project</id>
       <name>Github Releases</name>
-      <url>${gitHubMavenUrl}</url>
+      <url>https://maven.pkg.github.com/jeometry-org/jeometry</url>
     </repository>
   </distributionManagement>
 
@@ -407,12 +407,6 @@
     <org.slf4j.version>1.7.30</org.slf4j.version>
     <gpg.skip>true</gpg.skip>
     <github.global.server>github</github.global.server>
-    <gitHubUser>jeometry-org</gitHubUser>
-    <gitHubProject>jeometry</gitHubProject>
-    <gitHubRepository>${gitHubUser}/${gitHubProject}</gitHubRepository>
-    <gitHubToken>PERSONAL ACCESS TOKEN WITH PACKAGE DEPLOY PERMISSION</gitHubToken>
-    <gitHubMavenUrl>https://token:${gitHubToken}@maven.pkg.github.com/${gitHubRepository}</gitHubMavenUrl>
-    <siteUrl>http://${gitHubUser}.github.io/${gitHubProject}/</siteUrl>
     <skipTests>true</skipTests>
   </properties>
 </project>
