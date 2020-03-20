@@ -35,5 +35,5 @@ jobs:
 
 #### Build jeometry ####
     - name: Build jeometry
-      run: mvn deploy -X -DgitHubToken=${{secrets.GITHUB_TOKEN}}
+      run: mvn install
       working-directory: ./jeometry
