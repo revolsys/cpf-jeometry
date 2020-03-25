@@ -17,25 +17,24 @@ jobs:
       with:
         java-version: 11.0.x
 
-#### Checkout jeometry ####
-    - name: Checkout jeometry
+#### Checkout ####
+    - name: Checkout
       uses: actions/checkout@v2
       with:
         ref: master
         repository: jeometry-org/jeometry
-        path: jeometry
 
 #### MAVEN REPOSITORY CACHE ####
     - name: Maven Cache
       uses: actions/cache@v1
       with:
         path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-version-set-${{ hashFiles('**/pom.xml') }}
+        key: ${{ runner.os }}-maven-release-tag-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
-          ${{ runner.os }}-maven-version-set-
+          ${{ runner.os }}-maven-release-tag-
 
-#### Tag jeometry ####
-    - name: Tag jeometry
+#### Tag ####
+    - name: Tag
       env:
         GITHUB_REF: ${{github.ref}}
       run: |
@@ -49,4 +48,7 @@ jobs:
         git fetch --unshallow origin master
         git tag -f "${VERSION}"
         git push -f https://github.com/${{github.repository}} ${VERSION}
-      working-directory: ./jeometry
+
+#### Deploy ####
+    - name: Deploy
+      run: mvn -B deploy -DaltDeploymentRepository=github::https://maven.pkg.github.com/${{github.repository}}
