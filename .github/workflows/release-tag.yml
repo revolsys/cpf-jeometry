@@ -48,5 +48,5 @@ jobs:
         git commit -a -m "Version ${VERSION}"
         git fetch --unshallow origin master
         git tag -f "${VERSION}"
-        git push -f https://github.com/pauldaustin/gba ${VERSION}
+        git push -f https://github.com/${{github.repository}} ${VERSION}
       working-directory: ./jeometry
