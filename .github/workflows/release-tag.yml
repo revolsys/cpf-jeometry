@@ -17,6 +17,12 @@ jobs:
       with:
         java-version: 11.0.x
 
+#### Maven settings ####
+    - name: maven-settings-xml-action
+      uses: whelk-io/maven-settings-xml-action@v4
+      with:
+        servers: '[{ "id": "github", "username": "${{github.actor}}", "password": "${{ secrets.GITHUB_TOKEN}}" }]'
+
 #### Checkout ####
     - name: Checkout
       uses: actions/checkout@v2
