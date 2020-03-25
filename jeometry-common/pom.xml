@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.jeometry</groupId>
     <artifactId>jeometry-parent</artifactId>
-    <version>0.CPF-6.0.0-SNAPSHOT</version>
+    <version>0.CPF-6.0.0-RELEASE</version>
   </parent>
   <artifactId>jeometry-common</artifactId>
   <name>jeometry.org Common API</name>
