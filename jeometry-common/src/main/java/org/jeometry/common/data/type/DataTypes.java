@@ -108,10 +108,10 @@ public final class DataTypes {
     value -> WebColors.toColor(value), WebColors::toString);
 
   public static final DataType DATE = new FunctionDataType("date", java.util.Date.class,
-    value -> Dates.getDate(value), Dates::toDateTimeString, Dates::equalsNotNull);
+    value -> Dates.getDate(value), Dates::toDateTimeIsoString, Dates::equalsNotNull);
 
   public static final DataType DATE_TIME = new FunctionDataType("dateTime", Timestamp.class,
-    value -> Dates.getTimestamp(value), Dates::toTimestampString, Dates::equalsNotNull);
+    value -> Dates.getTimestamp(value), Dates::toTimestampIsoString, Dates::equalsNotNull);
 
   public static final DataType DECIMAL = new BigDecimalDataType();
 
@@ -157,7 +157,7 @@ public final class DataTypes {
   public static final DataType TIME = new SimpleDataType("time", Time.class);
 
   public static final DataType TIMESTAMP = new FunctionDataType("timestamp", Timestamp.class,
-    value -> Dates.getTimestamp(value), Dates::toTimestampString, Dates::equalsNotNull);
+    value -> Dates.getTimestamp(value), Dates::toTimestampIsoString, Dates::equalsNotNull);
 
   public static final DataType URL = new FunctionDataType("url", java.net.URL.class, value -> {
     if (value instanceof URL) {

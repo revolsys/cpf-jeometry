@@ -406,7 +406,7 @@ public interface Dates {
   }
 
   @SuppressWarnings("deprecation")
-  static String toDateTimeString(final Date date) {
+  static String toDateTimeIsoString(final Date date) {
     if (date == null) {
       return null;
     } else {
@@ -444,10 +444,10 @@ public interface Dates {
       string.append(day);
 
       if (date instanceof java.sql.Date) {
-        string.append(" 00:00:00");
+        string.append("T00:00:00");
       } else {
 
-        string.append(' ');
+        string.append('T');
 
         final int hour = date.getHours();
 
@@ -498,12 +498,12 @@ public interface Dates {
     }
   }
 
-  static String toDateTimeString(final Object value) {
+  static String toDateTimeIsoString(final Object value) {
     if (value == null) {
       return null;
     } else {
       final Date date = getDate(value);
-      return toDateTimeString(date);
+      return toDateTimeIsoString(date);
     }
   }
 
@@ -605,17 +605,17 @@ public interface Dates {
     }
   }
 
-  static String toTimestampString(final Object value) {
+  static String toTimestampIsoString(final Object value) {
     if (value == null) {
       return null;
     } else {
       final Timestamp timestamp = getTimestamp(value);
-      return toTimestampString(timestamp);
+      return toTimestampIsoString(timestamp);
     }
   }
 
   @SuppressWarnings("deprecation")
-  static String toTimestampString(final Timestamp date) {
+  static String toTimestampIsoString(final Timestamp date) {
     if (date == null) {
       return null;
     } else {
@@ -654,7 +654,7 @@ public interface Dates {
       }
       string.append(day);
 
-      string.append(' ');
+      string.append('T');
 
       final int hour = date.getHours();
       if (hour < 10) {
