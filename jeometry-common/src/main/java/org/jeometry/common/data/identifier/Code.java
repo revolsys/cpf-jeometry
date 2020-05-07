@@ -55,7 +55,9 @@ public interface Code extends Describable, Identifier {
   }
 
   default boolean equalsCode(final Object code) {
-    if (code == this) {
+    if (code == null) {
+      return false;
+    } else if (code == this) {
       return true;
     } else {
       final Object codeThis = getCode();
