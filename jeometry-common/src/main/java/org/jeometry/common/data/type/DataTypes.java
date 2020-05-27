@@ -11,7 +11,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.sql.Blob;
-import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -117,8 +116,6 @@ public final class DataTypes {
 
   public static final DataType DOUBLE = new DoubleDataType();
 
-  public static final DataType DURATION = new SimpleDataType("duration", Date.class);
-
   public static final DataType FLOAT = new FloatDataType();
 
   public static final DataType IDENTIFIER = new FunctionDataType("identifier", Identifier.class,
@@ -153,6 +150,8 @@ public final class DataTypes {
 
   public static final DataType STRING = new FunctionDataType("string", String.class,
     DataTypes::toString);
+
+  public static final DataType DURATION = new SimpleDataType("duration", String.class);
 
   public static final DataType TIME = new SimpleDataType("time", Time.class);
 
