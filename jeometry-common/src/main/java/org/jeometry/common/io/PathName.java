@@ -171,6 +171,14 @@ public final class PathName implements Comparable<PathName>, CharSequence {
     return null;
   }
 
+  public int getElementCount() {
+    if (this.parent == null) {
+      return 1;
+    } else {
+      return 1 + this.parent.getElementCount();
+    }
+  }
+
   public List<String> getElements() {
     final LinkedList<String> elements = new LinkedList<>();
     PathName currentPath = this;
@@ -180,6 +188,10 @@ public final class PathName implements Comparable<PathName>, CharSequence {
       currentPath = parentPath;
     }
     return elements;
+  }
+
+  public PathName getLastElement() {
+    return newPathName(this.name);
   }
 
   public String getName() {
